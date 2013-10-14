@@ -1,0 +1,14 @@
+<table>
+    <tr>
+        <th>工作名稱</th>
+        <th>工作內容</th>
+        <th>建立時間</th>
+    </tr>
+    {data}
+    <tr>
+        <td>{title}</td>
+        <td>{note}</td>
+        <td>{createTime}</td>
+    </tr>
+    {/data}
+</table>
