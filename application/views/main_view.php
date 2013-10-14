@@ -1,9 +1,10 @@
 <html>
 <head>
 <title>Easy ToDo</title>
+<style type="text/css">@import URL("/sys/css/main.css");</style>
 </head>
 <body>
-<div id=base style='margin:0px auto; width:960px;'>
+<div id='base'>
 {content}
 </div>
 </body>
