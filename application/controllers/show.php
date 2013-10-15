@@ -13,6 +13,5 @@ class Show extends CI_Controller
 		$data = $this->todo_model->get_list();
 		$content = $this->parser->parse("show_view", array('data' => $data), true);
 	    $this->parser->parse("main_view", array('content' => $content));
-		// echo 123;
 	}
 }
