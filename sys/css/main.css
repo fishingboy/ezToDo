@@ -1,1 +1,7 @@
- #base {margin:0px auto; width:960px;}
+ #base {margin:0px auto; width:960px; padding-top:30px;}
+
+ .list            {width:100%; /*border: 1px solid #ccc;*/}
+ .list .header    {background: #EFF0F2;}
+ .list .header td {font-weight: bold;}
+ .list .row       { }
+ .list .row td    {border-bottom:1px solid #EFF0F2;}
