@@ -38,12 +38,13 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
 // 計算網址的根目錄
 $tmp = explode("/", $_SERVER['PHP_SELF']);
-$base_url = "";
+$base_url = array();
 foreach ($tmp as $dir)
 {
     if ($dir == "index.php") break;
-    $base_url .= "/$dir";
+    $base_url[] = $dir;
 }
+$base_url = implode("/", $base_url);
 define('BASE_URL', 'http://'.$_SERVER['HTTP_HOST'].$base_url);
 
 

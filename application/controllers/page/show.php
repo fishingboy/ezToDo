@@ -14,4 +14,10 @@ class Show extends CI_Controller
 		$content = $this->parser->parse("show_view", array('data' => $data), true);
 	    $this->parser->parse("main_view", array('content' => $content));
 	}
+
+	public function get_def()
+	{
+		$a = get_defined_constants('user');
+		echo "<pre>" . print_r($a, TRUE). "</pre>";
+	}
 }
