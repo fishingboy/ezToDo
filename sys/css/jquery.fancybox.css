@@ -9,11 +9,11 @@
 .fancybox-error{color:#444;font:14px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;margin:0;padding:15px;white-space:nowrap;}
 .fancybox-image,.fancybox-iframe{display:block;width:100%;height:100%;}
 .fancybox-image{max-width:100%;max-height:100%;}
-#fancybox-loading,.fancybox-close,.fancybox-prev span,.fancybox-next span{background-image:url('/sys/images/fancybox_sprite.png');}
+#fancybox-loading,.fancybox-close,.fancybox-prev span,.fancybox-next span{background-image:url('../images/fancybox_sprite.png');}
 #fancybox-loading{position:fixed;top:50%;left:50%;margin-top:-22px;margin-left:-22px;background-position:0 -108px;opacity:0.8;cursor:pointer;z-index:200000;}
-#fancybox-loading div{width:44px;height:44px;background:url('/sys/images/fancybox_loading.gif') center center no-repeat;}
+#fancybox-loading div{width:44px;height:44px;background:url('../images/fancybox_loading.gif') center center no-repeat;}
 .fancybox-close{position:absolute;top:-18px;right:-18px;width:36px;height:36px;cursor:pointer;z-index:200010;}
-.fancybox-nav{position:absolute;top:0;width:40%;height:100%;cursor:pointer;text-decoration:none;background:transparent url('/sys/images/blank.gif');-webkit-tap-highlight-color:rgba(0,0,0,0);z-index:200020;}
+.fancybox-nav{position:absolute;top:0;width:40%;height:100%;cursor:pointer;text-decoration:none;background:transparent url('../images/blank.gif');-webkit-tap-highlight-color:rgba(0,0,0,0);z-index:200020;}
 .fancybox-prev{left:0;}
 .fancybox-next{right:0;}
 .fancybox-nav span{position:absolute;top:50%;width:36px;height:34px;margin-top:-18px;cursor:pointer;z-index:8040;visibility:hidden;}
@@ -22,7 +22,7 @@
 .fancybox-nav:hover span{visibility:visible;}
 .fancybox-tmp{position:absolute;top:-99999px;left:-99999px;visibility:hidden;max-width:99999px;max-height:99999px;overflow:visible!important;}
 .fancybox-lock{overflow:hidden;}
-.fancybox-overlay{position:absolute;top:0;left:0;overflow:hidden;display:none;z-index:200000;background:url('/sys/images/fancybox_overlay.png');}
+.fancybox-overlay{position:absolute;top:0;left:0;overflow:hidden;display:none;z-index:200000;background:url('../images/fancybox_overlay.png');}
 .fancybox-overlay-fixed{position:fixed;bottom:0;right:0;}
 .fancybox-lock .fancybox-overlay{overflow:auto;overflow-y:scroll;}
 .fancybox-title{visibility:hidden;font:normal 13px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;position:relative;text-shadow:none;z-index:8050;}
