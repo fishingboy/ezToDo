@@ -5,7 +5,7 @@ function to_edit()
     $.fancybox(
     {
         'type'      : 'iframe',
-        'href'      : '/form/todo_edit',
+        'href'      : '<?= BASE_URL ?>form/todo_edit',
         'margin'    : 60,
         'padding'   : 5,
         'width'     : 500,

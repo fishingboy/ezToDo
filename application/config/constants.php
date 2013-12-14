@@ -42,7 +42,7 @@ $base_url = "";
 foreach ($tmp as $dir)
 {
     if ($dir == "index.php") break;
-    $base_url .= "$dir/";
+    $base_url .= "/$dir";
 }
 define('BASE_URL', 'http://'.$_SERVER['HTTP_HOST'].$base_url);
 
