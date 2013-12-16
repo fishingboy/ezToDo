@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<base href="<?= BASE_URL ?>/"/>
+<base href="<?= BASE_URL ?>/" />
 <meta charset="utf-8" />
 <title>Easy ToDo</title>
 <!-- fancyBox -->

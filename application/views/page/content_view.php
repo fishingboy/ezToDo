@@ -1,3 +1,7 @@
+<style>
+.button {border-radius: 5px;}
+</style>
+
 <script type="text/javascript">
 // 編輯
 function to_edit() 
@@ -6,10 +10,8 @@ function to_edit()
     {
         'type'      : 'iframe',
         'href'      : '<?= BASE_URL ?>/form/todo_edit',
-        'margin'    : 60,
-        'padding'   : 5,
         'width'     : 500,
-        'height'    : 500,
+        'height'    : 200,
         'autoSize'  : false
     });
 }
@@ -21,7 +23,7 @@ $(function()
 });
 </script>
 
-<input id='fmAdd' type='button' value='新增'>
+<input id='fmAdd' type='button' class='button' value='新增'>
 <table class='list'>
     <tr class='header'>
         <th>工作名稱</th>
