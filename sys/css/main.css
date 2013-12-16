@@ -15,8 +15,13 @@
 .jobBox .createTime   {float:right; font-size:12px; width:200px; color:#999; text-align: right;}
 .jobBox .hours        {float:right; font-size:12px; width:150px; color:#999;}
 .jobBox .more         {float:right; font-size:12px; width:50px; color:#999; text-align: center;}
+.jobBox .tools        {float:right; font-size:12px; width:50px; color:#999; text-align: center;}
 .jobBox:hover         {border:1px solid #ccc; background:#DCEBEB; margin:3px 0px; padding:5px 7px; border-radius: 7px;}
 
 /* 按鈕 */
 .button        {border:1px solid #ccc; border-radius: 5px; padding:3px 5px; background: #277C95; color:#fff;}
 .button:hover  {border:1px solid #fff; border-radius: 5px; padding:3px 5px; background: #27955B; color:#fff;}
+.button_icon   {cursor: pointer; }
+ 
+/* 錯誤訊息 */
+.error {border:1px solid #ccc; background:#eff; margin:3px 0px; padding:5px 7px; border-radius: 7px; text-align: center;}

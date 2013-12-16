@@ -11,7 +11,7 @@ class Show extends CI_Controller
 	public function index()
 	{
 		$data = $this->todo_model->get_list();
-		$content = $this->parser->parse("page/content2_view", array('data' => $data), true);
+		$content = $this->parser->parse("page/content_view", array('data' => $data), true);
 	    $this->parser->parse("page/main_view", array('content' => $content));
 	}
 

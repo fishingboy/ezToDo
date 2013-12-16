@@ -1,40 +1,54 @@
-<style>
-.button {border-radius: 5px;}
-</style>
-
 <script type="text/javascript">
-// 編輯
-function to_edit() 
+var $todo_edit = 
 {
-    $.fancybox(
+    // 編輯
+    edit : function() 
     {
-        'type'      : 'iframe',
-        'href'      : '<?= BASE_URL ?>/form/todo_edit',
-        'width'     : 500,
-        'height'    : 200,
-        'autoSize'  : false
-    });
+        $.fancybox(
+        {
+            'type'      : 'iframe',
+            'href'      : '<?= BASE_URL ?>/form/todo_edit',
+            'width'     : 500,
+            'height'    : 140,
+            'autoSize'  : false
+        });
+    },
+    // 刪除
+    del : function() 
+    {
+        var id = this.id.split('_')[1];
+        if (confirm('確定要刪除工作嗎？'))
+        {
+            $.get('<?= BASE_URL ?>/form/todo_edit/del/' + id, function(data) 
+            {
+                window.location.reload(true);
+            });
+        }
+    }
 }
 
 $(function() 
 {   
     // 綁定事件
-    $('#fmAdd').bind('click', to_edit);
+    $('#fmAdd').bind('click', $todo_edit.edit);
+    $('.del_button').bind('click', $todo_edit.del);
 });
 </script>
 
 <input id='fmAdd' type='button' class='button' value='新增'>
-<table class='list'>
-    <tr class='header'>
-        <th>工作名稱</th>
-        <th>工作內容</th>
-        <th>建立時間</th>
-    </tr>
+<?php if (count($data) == 0): ?>
+    <div class='error'>尚無資料！</div>
+<?php else: ?>
     {data}
-    <tr class='row'>
-        <td>{title}</td>
-        <td>{note}</td>
-        <td>{createTime}</td>
-    </tr>
+    <div class='jobBox'>
+        <div class='jobInfo'>
+            <div class='tools'><img id='del_{id}' class='del_button button_icon' src='<?= BASE_URL ?>/sys/images/delete.gif'></div>
+            <div class='more'>詳細</div>
+            <div class='createTime'>建立時間: {createTime}</div>
+            <div class='hours'>估計需要: {hours} 小時</div>
+            <div class='title'>{title}</div>
+        </div>
+        <div class='jobNote'>{note}</div>
+    </div>
     {/data}
-</table>
+<?php endif; ?>

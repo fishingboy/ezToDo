@@ -9,7 +9,6 @@ class Todo_edit extends CI_Controller
 		$this->load->model("todo_model");
 	}
 
-
     /**
      * 編輯畫面
      */
@@ -56,5 +55,16 @@ class Todo_edit extends CI_Controller
 
         // 畫面重整
         echo "<script>parent.location.reload(true);</script>";
+    }
+
+    /**
+     * 刪除工作
+     */
+    public function del($todoID)
+    {
+        $this->todo_model->del_todo($todoID);
+        $sql = $this->db->last_query();
+        $ret = array('status' => TRUE, 'sql' => $sql,  'msg' => '刪除完畢!');
+        echo json_encode($ret);
     }
 }
