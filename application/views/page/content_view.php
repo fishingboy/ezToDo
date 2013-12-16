@@ -8,8 +8,8 @@ var $todo_edit =
         {
             'type'      : 'iframe',
             'href'      : '<?= BASE_URL ?>/form/todo_edit',
-            'width'     : 500,
-            'height'    : 140,
+            'width'     : 600,
+            'height'    : 260,
             'autoSize'  : false
         });
     },
