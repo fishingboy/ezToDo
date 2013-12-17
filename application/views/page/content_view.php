@@ -1,3 +1,5 @@
+<!-- <script src="http://code.jquery.com/jquery-1.9.1.js"></script> -->
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script type="text/javascript">
 var $todo_edit = 
 {
@@ -15,7 +17,7 @@ var $todo_edit =
         $.fancybox(
         {
             'type'      : 'iframe',
-            'href'      : '<?= BASE_URL ?>/form/todo_edit',
+            'href'      : '<?= BASE_URL ?>/form/todo_edit/index',
             'width'     : 600,
             'height'    : 270,
             'autoSize'  : false
@@ -51,6 +53,14 @@ var $todo_edit =
 $(function() 
 {   
     $todo_edit.page_init();
+
+    $("#jobs").sortable(
+    {
+        change: function( event, ui ) 
+        {
+            console.log(ui);
+        }
+    });
 });
 </script>
 
@@ -58,19 +68,21 @@ $(function()
 <?php if (count($data) == 0): ?>
     <div class='error'>尚無資料！</div>
 <?php else: ?>
-    {data}
-    <div class='jobBox'>
-        <div class='jobInfo'>
-            <div class='tools'>
-                <img id='edit_{id}' class='edit_button button_icon' src='<?= BASE_URL ?>/sys/images/edit.gif'>
-                <img id='del_{id}' class='del_button button_icon' src='<?= BASE_URL ?>/sys/images/delete.gif'>
+    <div id='jobs'>
+        {data}
+        <div id='jobBox_{id}' class='jobBox'>
+            <div class='jobInfo'>
+                <div class='tools'>
+                    <img id='edit_{id}' class='edit_button button_icon' src='<?= BASE_URL ?>/sys/images/edit.gif'>
+                    <img id='del_{id}' class='del_button button_icon' src='<?= BASE_URL ?>/sys/images/delete.gif'>
+                </div>
+                <div class='more'>詳細</div>
+                <div class='createTime'>建立時間: {createTime}</div>
+                <div class='hours'>估計需要: {hours} 小時</div>
+                <div class='title'>{title}</div>
             </div>
-            <div class='more'>詳細</div>
-            <div class='createTime'>建立時間: {createTime}</div>
-            <div class='hours'>估計需要: {hours} 小時</div>
-            <div class='title'>{title}</div>
+            <div class='jobNote'>{note}</div>
         </div>
-        <div class='jobNote'>{note}</div>
+        {/data}
     </div>
-    {/data}
 <?php endif; ?>
