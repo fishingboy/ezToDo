@@ -47,7 +47,8 @@ class Todo_edit extends CI_Controller
             'note'       => $fmNote,
             'hours'      => $fmHours,
             'status'     => 1,
-            'updateTime' => date('Y-m-d H:i:s')
+            'updateTime' => date('Y-m-d H:i:s'),
+            'sn'         => 99999999
         );
 
         // 寫入工作
