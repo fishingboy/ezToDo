@@ -1,10 +1,11 @@
- #base {margin:0px auto; width:960px; padding-top:30px;}
+
+#base {margin:0px auto; width:960px; padding-top:30px;}
 
 /* 工作列表 */
 .list            {width:100%; /*border: 1px solid #ccc;*/}
 .list .header    {background: #EFF0F2;}
 .list .header td {font-weight: bold;}
-.list .row       { }
+.list .row       {}
 .list .row td    {border-bottom:1px solid #EFF0F2;}
 
 /* 工作項目 */
@@ -17,6 +18,9 @@
 .jobBox .more         {float:right; font-size:12px; width:50px; color:#999; text-align: center;}
 .jobBox .tools        {float:right; font-size:12px; width:50px; color:#999; text-align: center;}
 .jobBox:hover         {border:1px solid #ccc; background:#DCEBEB; margin:3px 0px; padding:5px 7px; border-radius: 7px;}
+
+/* 表單 */
+.form div {min-height:25px;}
 
 /* 按鈕 */
 .button        {border:1px solid #ccc; border-radius: 5px; padding:3px 5px; background: #277C95; color:#fff;}

@@ -1,6 +1,13 @@
 <script type="text/javascript">
 var $todo_edit = 
 {
+    page_init : function() 
+    {
+        // 綁定事件
+        $('#fmAdd').bind('click', this, $todo_edit.edit);
+        $('.del_button').bind('click', this, $todo_edit.del);
+    },
+
     // 編輯
     edit : function() 
     {
@@ -9,7 +16,7 @@ var $todo_edit =
             'type'      : 'iframe',
             'href'      : '<?= BASE_URL ?>/form/todo_edit',
             'width'     : 600,
-            'height'    : 260,
+            'height'    : 270,
             'autoSize'  : false
         });
     },
@@ -29,9 +36,7 @@ var $todo_edit =
 
 $(function() 
 {   
-    // 綁定事件
-    $('#fmAdd').bind('click', $todo_edit.edit);
-    $('.del_button').bind('click', $todo_edit.del);
+    $todo_edit.page_init();
 });
 </script>
 
