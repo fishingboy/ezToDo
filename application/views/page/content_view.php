@@ -4,17 +4,31 @@ var $todo_edit =
     page_init : function() 
     {
         // 綁定事件
-        $('#fmAdd').bind('click', this, $todo_edit.edit);
+        $('#fmAdd').bind('click', this, $todo_edit.add);
         $('.del_button').bind('click', this, $todo_edit.del);
+        $('.edit_button').bind('click', this, $todo_edit.edit);
     },
 
     // 編輯
-    edit : function() 
+    add : function() 
     {
         $.fancybox(
         {
             'type'      : 'iframe',
             'href'      : '<?= BASE_URL ?>/form/todo_edit',
+            'width'     : 600,
+            'height'    : 270,
+            'autoSize'  : false
+        });
+    },
+    // 編輯
+    edit : function() 
+    {
+        var id = this.id.split('_')[1];
+        $.fancybox(
+        {
+            'type'      : 'iframe',
+            'href'      : '<?= BASE_URL ?>/form/todo_edit/index/' + id,
             'width'     : 600,
             'height'    : 270,
             'autoSize'  : false
@@ -47,7 +61,10 @@ $(function()
     {data}
     <div class='jobBox'>
         <div class='jobInfo'>
-            <div class='tools'><img id='del_{id}' class='del_button button_icon' src='<?= BASE_URL ?>/sys/images/delete.gif'></div>
+            <div class='tools'>
+                <img id='edit_{id}' class='edit_button button_icon' src='<?= BASE_URL ?>/sys/images/edit.gif'>
+                <img id='del_{id}' class='del_button button_icon' src='<?= BASE_URL ?>/sys/images/delete.gif'>
+            </div>
             <div class='more'>詳細</div>
             <div class='createTime'>建立時間: {createTime}</div>
             <div class='hours'>估計需要: {hours} 小時</div>
