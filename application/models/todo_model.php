@@ -86,7 +86,7 @@ class Todo_model extends CI_Model
         $this->_CI->debug_info['update_sn'] = $sn;
 
         // 重整順序
-        // $this->rebuild_sn();
+        $this->rebuild_sn();
         return TRUE;
     }
 

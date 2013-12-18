@@ -78,6 +78,7 @@ $(function()
             var todoID = id.split('_')[1];
 
             // 判斷是往上還是往下
+            console.log(sn + " > " + old_sn);
             if (sn > old_sn) sn++;
 
             // 寫回全域變數
@@ -86,7 +87,7 @@ $(function()
             // 呼叫 ajax 排序
             $.get('<?= BASE_URL ?>/form/todo_edit/sort/' + todoID + '/' + sn, function(data) 
             {
-                window.location.reload(true);
+                // window.location.reload(true);
             });
         }
     });
