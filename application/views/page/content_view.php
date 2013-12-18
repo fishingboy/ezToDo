@@ -70,11 +70,11 @@ $(function()
 <?php else: ?>
     <div id='jobs'>
         {data}
-        <div id='jobBox_{id}' class='jobBox'>
+        <div id='jobBox_{todoID}' class='jobBox'>
             <div class='jobInfo'>
                 <div class='tools'>
-                    <img id='edit_{id}' class='edit_button button_icon' src='<?= BASE_URL ?>/sys/images/edit.gif'>
-                    <img id='del_{id}' class='del_button button_icon' src='<?= BASE_URL ?>/sys/images/delete.gif'>
+                    <img id='edit_{todoID}' class='edit_button button_icon' src='<?= BASE_URL ?>/sys/images/edit.gif'>
+                    <img id='del_{todoID}' class='del_button button_icon' src='<?= BASE_URL ?>/sys/images/delete.gif'>
                 </div>
                 <div class='more'>詳細</div>
                 <div class='createTime'>建立時間: {createTime}</div>

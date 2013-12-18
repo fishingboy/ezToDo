@@ -6,7 +6,7 @@ class Todo_model extends CI_Model
      */
     public function get_list()
     {
-        $sql = "SELECT * FROM `todo` WHERE status='1' ORDER BY sn, id ASC";
+        $sql = "SELECT * FROM `todo` WHERE status='1' ORDER BY sn, todoID ASC";
         $query = $this->db->query($sql);
         return $query->result();
     }
@@ -24,7 +24,7 @@ class Todo_model extends CI_Model
             $todoID = $this->db->insert_id();
         }
 
-        $sql = "SELECT * FROM `todo` WHERE id=?";
+        $sql = "SELECT * FROM `todo` WHERE todoID=?";
         $query = $this->db->query($sql, array($todoID));
         return $query->row();
     }
@@ -35,7 +35,7 @@ class Todo_model extends CI_Model
     public function add_todo($todoID, $data)
     {
         // 更新資料
-        $this->db->where('id', $todoID)->update('todo', $data); 
+        $this->db->where('todoID', $todoID)->update('todo', $data); 
 
         // 重整順序
         $this->rebuild_sn();
@@ -49,7 +49,7 @@ class Todo_model extends CI_Model
      */
     public function del_todo($todoID)
     {
-        $this->db->where('id', $todoID)->delete('todo'); 
+        $this->db->where('todoID', $todoID)->delete('todo'); 
         $this->rebuild_sn();
         return TRUE;
     }
@@ -70,13 +70,13 @@ class Todo_model extends CI_Model
     {
         $sql = "UPDATE todo as T,
                        (
-                            SELECT id, (@rownum := @rownum + 10) as rownum
+                            SELECT todoID, (@rownum := @rownum + 10) as rownum
                             FROM todo, (SELECT @rownum :=0) as R
                             WHERE status='1'
-                            ORDER BY sn ASC, id ASC
+                            ORDER BY sn ASC, todoID ASC
                        ) as SN
                 SET T.sn = SN.rownum
-                WHERE T.id=SN.id";
+                WHERE T.todoID=SN.todoID";
         $this->db->query($sql);
         return TRUE;
     }

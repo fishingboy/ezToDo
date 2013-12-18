@@ -20,7 +20,7 @@ class Todo_edit extends CI_Controller
         // 整理 view data
         $view_data = array
         (
-            'todoID'     => $todo->id,
+            'todoID'     => $todo->todoID,
             'todo_title' => $todo->title,
             'todo_note'  => $todo->note,
             'todo_hours' => ($todo->hours) ? $todo->hours : '',
