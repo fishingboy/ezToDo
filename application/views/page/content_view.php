@@ -1,4 +1,3 @@
-<!-- <script src="http://code.jquery.com/jquery-1.9.1.js"></script> -->
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script type="text/javascript">
 var $todo_edit = 
@@ -94,7 +93,17 @@ $(function()
 });
 </script>
 
-<input id='fmAdd' type='button' class='button' value='新增'>
+<div id='tool_bar' class='clearfix'>
+    <div id='tool_left'><input id='fmAdd' type='button' class='button' value='新增'></div>
+    <div id='tool_right'>
+        <select id='fmStatus'>
+            <option value='0'>所有工作</option>
+            <option value='1'>未完成</option>
+            <option value='2'>已完成</option>
+            <option value='3'>擱置</option>
+        </select>
+    </div>
+</div>
 <?php if (count($data) == 0): ?>
     <div class='error'>尚無資料！</div>
 <?php else: ?>

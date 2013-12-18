@@ -1,12 +1,20 @@
 
 #base {margin:0px auto; width:960px; padding-top:30px;}
 
+.clearfix        {zoom: 1;}
+.clearfix:before {content: ""; display: table;}
+.clearfix:after  {content: ""; display: table; clear: both;}
+
 /* 工作列表 */
 .list            {width:100%; /*border: 1px solid #ccc;*/}
 .list .header    {background: #EFF0F2;}
 .list .header td {font-weight: bold;}
 .list .row       {}
 .list .row td    {border-bottom:1px solid #EFF0F2;}
+
+/* 工作列 */
+#tool_bar #tool_left  {float:left;}
+#tool_bar #tool_right {float:right;}
 
 /* 工作項目 */
 .jobBox               {border:1px solid #ccc; background:#eff; margin:3px 0px; padding:5px 7px; border-radius: 7px;}
