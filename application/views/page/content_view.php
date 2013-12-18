@@ -84,7 +84,10 @@ $(function()
             curr_todo_map = todo_map;
 
             // 呼叫 ajax 排序
-            $.get('<?= BASE_URL ?>/form/todo_edit/sort/' + todoID + '/' + sn);
+            $.get('<?= BASE_URL ?>/form/todo_edit/sort/' + todoID + '/' + sn, function(data) 
+            {
+                window.location.reload(true);
+            });
         }
     });
 });
