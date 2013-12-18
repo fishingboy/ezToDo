@@ -54,11 +54,37 @@ $(function()
 {   
     $todo_edit.page_init();
 
+    var curr_todo_map = $('#jobs').children().map(function()
+    {
+        return $(this).attr('id');
+    });
+
+
     $("#jobs").sortable(
     {
-        change: function( event, ui ) 
+        stop: function( event, ui ) 
         {
-            console.log(ui);
+            var id = ui.item.attr('id');
+
+            // 找出之前的位置
+            var old_sn = $.inArray(id, curr_todo_map);
+
+            // 找出目前的順序
+            var todo_map = $('#jobs').children().map(function()
+            {
+                return $(this).attr('id');
+            });
+            var sn = $.inArray(id, todo_map);
+            var todoID = id.split('_')[1];
+
+            // 判斷是往上還是往下
+            if (sn > old_sn) sn++;
+
+            // 寫回全域變數
+            curr_todo_map = todo_map;
+
+            // 呼叫 ajax 排序
+            $.get('<?= BASE_URL ?>/form/todo_edit/sort/' + todoID + '/' + sn);
         }
     });
 });

@@ -2,6 +2,8 @@
 
 class Todo_edit extends CI_Controller 
 {
+    public $debug_info;
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -20,10 +22,12 @@ class Todo_edit extends CI_Controller
         // 整理 view data
         $view_data = array
         (
-            'todoID'     => $todo->todoID,
-            'todo_title' => $todo->title,
-            'todo_note'  => $todo->note,
-            'todo_hours' => ($todo->hours) ? $todo->hours : '',
+            'todoID'      => $todo->todoID,
+            'todo_title'  => $todo->title,
+            'todo_note'   => $todo->note,
+            'todo_status' => $todo->status,
+            'todo_sn'     => $todo->sn,
+            'todo_hours'  => ($todo->hours) ? $todo->hours : '',
         );
 
         // 呼叫 view
@@ -36,9 +40,11 @@ class Todo_edit extends CI_Controller
     public function submit($todoID=0)
     {
         // 取得參數
-        $fmTitle = $this->input->post('fmTitle');
-        $fmNote  = $this->input->post('fmNote');
-        $fmHours = $this->input->post('fmHours');
+        $fmTitle  = $this->input->post('fmTitle');
+        $fmNote   = $this->input->post('fmNote');
+        $fmHours  = $this->input->post('fmHours');
+        $fmStatus = $this->input->post('fmStatus');
+        $fmSN     = $this->input->post('fmSN');
 
         // 整理新增資料
         $insert_data = array
@@ -48,7 +54,7 @@ class Todo_edit extends CI_Controller
             'hours'      => $fmHours,
             'status'     => 1,
             'updateTime' => date('Y-m-d H:i:s'),
-            'sn'         => 99999999
+            'sn'         => ($fmStatus) ? $fmSN : 99999999
         );
 
         // 寫入工作
@@ -66,6 +72,13 @@ class Todo_edit extends CI_Controller
         $this->todo_model->del_todo($todoID);
         $sql = $this->db->last_query();
         $ret = array('status' => TRUE, 'sql' => $sql,  'msg' => '刪除完畢!');
+        echo json_encode($ret);
+    }
+
+    public function sort($todoID, $sn)
+    {
+        $this->todo_model->sort_todo($todoID, $sn);
+        $ret = array('status' => TRUE, 'msg' => '排序完畢!', 'debug_info' => $this->debug_info);
         echo json_encode($ret);
     }
 }

@@ -1,6 +1,13 @@
 <?php
 class Todo_model extends CI_Model
 {
+    var $_CI;
+
+    public function __construct()
+    {
+        $_CI = & get_instance();
+    }
+
     /**
      * 取得工作列表
      */
@@ -60,6 +67,26 @@ class Todo_model extends CI_Model
     public function del_tmp_todo()
     {
         $this->db->where('status', 0)->delete('todo'); 
+        return TRUE;
+    }
+
+    /**
+     * 排序
+     */
+    public function sort_todo($todoID, $sn)
+    {
+        // 插入到兩點之間
+        $this->_CI->debug_info['sn'] = $sn;
+        
+        $sn = intval($sn . '0') + 5;
+        $sql = "UPDATE `todo` SET sn=? WHERE todoID=?";
+        $this->db->query($sql, array($sn, $todoID));
+
+        $this->_CI->debug_info['todoID'] = $todoID;
+        $this->_CI->debug_info['update_sn'] = $sn;
+
+        // 重整順序
+        // $this->rebuild_sn();
         return TRUE;
     }
 
