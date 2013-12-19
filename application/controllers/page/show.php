@@ -22,9 +22,9 @@ class Show extends CI_Controller
 		{ 
             $data[$i]->note         = $this->_note($data[$i]->note);
             $data[$i]->createTime   = $this->_time($data[$i]->createTime);
-            $data[$i]->hours        = ($data[$i]->hours) ? intval($data[$i]->hours) : '-';
-            $data[$i]->usedHours    = ($data[$i]->usedHours) ? intval($data[$i]->usedHours) : '-';
-            $data[$i]->surplusHours = ($data[$i]->hours != '-') ? $data[$i]->hours - intval($data[$i]->usedHours) : '-';
+            $data[$i]->hours        = ($data[$i]->hours) ? floatval($data[$i]->hours) : '-';
+            $data[$i]->usedHours    = ($data[$i]->usedHours) ? floatval($data[$i]->usedHours) : '-';
+            $data[$i]->surplusHours = ($data[$i]->hours != '-') ? $data[$i]->hours - floatval($data[$i]->usedHours) : '-';
 		}
 
 		// 整理 view data
