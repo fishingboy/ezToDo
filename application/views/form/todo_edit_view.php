@@ -3,7 +3,7 @@
 <style>
 #fmTitle {width:490px;}
 #fmHours {width:100px;}
-#fmNote  {width:570px; height:120px;}
+#fmNote  {width:850px; height:350px;}
 </style>
 <form class='form' action='<?= BASE_URL ?>/form/todo_edit/submit/{todoID}' method='POST'>
     <div style='font-weight:bold; font-size:16px;'><?= ($todo_status) ? "編輯工作" : "新增工作" ?></div>

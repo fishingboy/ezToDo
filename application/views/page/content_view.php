@@ -17,8 +17,8 @@ var $todo_edit =
         {
             'type'      : 'iframe',
             'href'      : '<?= BASE_URL ?>/form/todo_edit/index',
-            'width'     : 600,
-            'height'    : 270,
+            'width'     : 900,
+            'height'    : 500,
             'autoSize'  : false
         });
     },
@@ -30,8 +30,8 @@ var $todo_edit =
         {
             'type'      : 'iframe',
             'href'      : '<?= BASE_URL ?>/form/todo_edit/index/' + id,
-            'width'     : 600,
-            'height'    : 270,
+            'width'     : 900,
+            'height'    : 500,
             'autoSize'  : false
         });
     },
