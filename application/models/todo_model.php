@@ -11,9 +11,12 @@ class Todo_model extends CI_Model
     /**
      * 取得工作列表
      */
-    public function get_list()
+    public function get_list($status=1)
     {
-        $sql = "SELECT * FROM `todo` WHERE status='1' ORDER BY sn, todoID ASC";
+        if ($status)
+            $sql = "SELECT * FROM `todo` WHERE status='$status' ORDER BY sn, todoID ASC";
+        else
+            $sql = "SELECT * FROM `todo` ORDER BY sn, todoID ASC";
         $query = $this->db->query($sql);
         return $query->result();
     }

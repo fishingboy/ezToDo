@@ -22,12 +22,13 @@ class Todo_edit extends CI_Controller
         // 整理 view data
         $view_data = array
         (
-            'todoID'      => $todo->todoID,
-            'todo_title'  => $todo->title,
-            'todo_note'   => $todo->note,
-            'todo_status' => $todo->status,
-            'todo_sn'     => $todo->sn,
-            'todo_hours'  => ($todo->hours) ? $todo->hours : '',
+            'todoID'          => $todo->todoID,
+            'todo_title'      => $todo->title,
+            'todo_note'       => $todo->note,
+            'todo_status'     => $todo->status,
+            'todo_sn'         => $todo->sn,
+            'todo_hours'      => ($todo->hours) ? $todo->hours : '',
+            'todo_used_hours' => ($todo->usedHours) ? $todo->usedHours : '',
         );
 
         // 呼叫 view
@@ -40,21 +41,24 @@ class Todo_edit extends CI_Controller
     public function submit($todoID=0)
     {
         // 取得參數
-        $fmTitle  = $this->input->post('fmTitle');
-        $fmNote   = $this->input->post('fmNote');
-        $fmHours  = $this->input->post('fmHours');
-        $fmStatus = $this->input->post('fmStatus');
-        $fmSN     = $this->input->post('fmSN');
+        $fmTitle     = $this->input->post('fmTitle');
+        $fmNote      = $this->input->post('fmNote');
+        $fmHours     = $this->input->post('fmHours');
+        $fmUsedHours = $this->input->post('fmUsedHours');
+        $fmStatus    = $this->input->post('fmStatus');
+        $fmSN        = $this->input->post('fmSN');
 
         // 整理新增資料
         $insert_data = array
         (
-            'title'      => $fmTitle,
-            'note'       => $fmNote,
-            'hours'      => $fmHours,
-            'status'     => 1,
-            'updateTime' => date('Y-m-d H:i:s'),
-            'sn'         => ($fmStatus) ? $fmSN : 99999999
+            'title'        => $fmTitle,
+            'note'         => $fmNote,
+            'hours'        => $fmHours,
+            'usedHours'    => $fmUsedHours,
+            'status'       => ($fmStatus) ? ($fmStatus) : 1,
+            'updateTime'   => date('Y-m-d H:i:s'),
+            'completeTime' => ($fmStatus == 2) ? date('Y-m-d H:i:s') : '',
+            'sn'           => ($fmStatus) ? $fmSN : 99999999
         );
 
         // 寫入工作

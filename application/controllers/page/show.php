@@ -10,8 +10,15 @@ class Show extends CI_Controller
 
 	public function index()
 	{
-		$data = $this->todo_model->get_list();
-		$content = $this->parser->parse("page/content_view", array('data' => $data), true);
+		$status = $this->input->get('status');
+        $status = ($status !== FALSE) ? $status : 1;
+		$data = $this->todo_model->get_list($status);
+		$view_data = array
+		(
+			'status' => $status,
+			'data'   => $data
+		);
+		$content = $this->parser->parse("page/content_view", $view_data, true);
 	    $this->parser->parse("page/main_view", array('content' => $content));
 	}
 

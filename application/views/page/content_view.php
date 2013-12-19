@@ -5,9 +5,10 @@ var $todo_edit =
     page_init : function() 
     {
         // 綁定事件
-        $('#fmAdd').bind('click', this, $todo_edit.add);
-        $('.del_button').bind('click', this, $todo_edit.del);
-        $('.edit_button').bind('click', this, $todo_edit.edit);
+        $('#fmAdd').bind('click', this, this.add);
+        $('.del_button').bind('click', this, this.del);
+        $('.edit_button').bind('click', this, this.edit);
+        $('#fmStatus').bind('change', this, this.change_status);
     },
 
     // 編輯
@@ -46,6 +47,12 @@ var $todo_edit =
                 window.location.reload(true);
             });
         }
+    },
+    // 變更篩選狀態
+    change_status : function()
+    {
+        var status = $('#fmStatus').val();
+        window.location.href = "?status=" + status;
     }
 }
 
@@ -92,15 +99,14 @@ $(function()
     });
 });
 </script>
-
 <div id='tool_bar' class='clearfix'>
     <div id='tool_left'><input id='fmAdd' type='button' class='button' value='新增'></div>
     <div id='tool_right'>
         <select id='fmStatus'>
-            <option value='0'>所有工作</option>
-            <option value='1'>未完成</option>
-            <option value='2'>已完成</option>
-            <option value='3'>擱置</option>
+            <option value='0' <?= ($status == 0) ? "selected" : "" ?> />所有工作</option>
+            <option value='1' <?= ($status == 1) ? "selected" : "" ?> />未完成</option>
+            <option value='2' <?= ($status == 2) ? "selected" : "" ?> />已完成</option>
+            <option value='3' <?= ($status == 3) ? "selected" : "" ?> />擱置</option>
         </select>
     </div>
 </div>
