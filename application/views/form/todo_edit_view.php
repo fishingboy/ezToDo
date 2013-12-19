@@ -5,6 +5,7 @@
 <style>
 #fmTitle       {width:490px;}
 #fmHours       {width:100px;}
+#fmUsedHours   {width:100px;}
 .add #fmNote   {width:850px; height:350px;}
 .edit #fmNote  {width:850px; height:300px;}
 </style>
