@@ -20,7 +20,11 @@ class Show extends CI_Controller
 		// 資料處理
 		for ($i=0, $i_max=count($data); $i < $i_max; $i++) 
 		{ 
-			$data[$i]->note = $this->_note($data[$i]->note);
+            $data[$i]->note         = $this->_note($data[$i]->note);
+            $data[$i]->createTime   = $this->_time($data[$i]->createTime);
+            $data[$i]->hours        = ($data[$i]->hours) ? intval($data[$i]->hours) : '-';
+            $data[$i]->usedHours    = ($data[$i]->usedHours) ? intval($data[$i]->usedHours) : '-';
+            $data[$i]->surplusHours = ($data[$i]->hours != '-' && $data[$i]->usedHours != '-') ? $data[$i]->hours-$data[$i]->usedHours : '-';
 		}
 
 		// 整理 view data
@@ -41,6 +45,14 @@ class Show extends CI_Controller
     private function _note($str)
     {
         return ($str == "") ? "無" : nl2br(htmlspecialchars($str));
+    }
+
+    /**
+     * 時間處理
+     */
+    private function _time($time)
+    {
+        return substr($time, 5, 11);
     }
 
 	public function get_def()
