@@ -24,7 +24,7 @@ class Show extends CI_Controller
             $data[$i]->createTime   = $this->_time($data[$i]->createTime);
             $data[$i]->hours        = ($data[$i]->hours) ? intval($data[$i]->hours) : '-';
             $data[$i]->usedHours    = ($data[$i]->usedHours) ? intval($data[$i]->usedHours) : '-';
-            $data[$i]->surplusHours = ($data[$i]->hours != '-' && $data[$i]->usedHours != '-') ? $data[$i]->hours-$data[$i]->usedHours : '-';
+            $data[$i]->surplusHours = ($data[$i]->hours != '-') ? $data[$i]->hours - intval($data[$i]->usedHours) : '-';
 		}
 
 		// 整理 view data
