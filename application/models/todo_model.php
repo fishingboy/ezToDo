@@ -16,7 +16,7 @@ class Todo_model extends CI_Model
         if ($status)
             $sql = "SELECT * FROM `todo` WHERE status='$status' ORDER BY sn, todoID ASC";
         else
-            $sql = "SELECT * FROM `todo` ORDER BY sn, todoID ASC";
+            $sql = "SELECT * FROM `todo` WHERE status!='0' ORDER BY sn, todoID ASC";
         $query = $this->db->query($sql);
         return $query->result();
     }

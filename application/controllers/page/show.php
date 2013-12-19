@@ -10,17 +10,38 @@ class Show extends CI_Controller
 
 	public function index()
 	{
+		// 篩選狀態
 		$status = $this->input->get('status');
         $status = ($status !== FALSE) ? $status : 1;
+
+        // 取得資料
 		$data = $this->todo_model->get_list($status);
+
+		// 資料處理
+		for ($i=0, $i_max=count($data); $i < $i_max; $i++) 
+		{ 
+			$data[$i]->note = $this->_note($data[$i]->note);
+		}
+
+		// 整理 view data
 		$view_data = array
 		(
 			'status' => $status,
 			'data'   => $data
 		);
+
+		// 顯示
 		$content = $this->parser->parse("page/content_view", $view_data, true);
 	    $this->parser->parse("page/main_view", array('content' => $content));
 	}
+
+    /**
+     * 描述處理
+     */
+    private function _note($str)
+    {
+        return ($str == "") ? "無" : nl2br(htmlspecialchars($str));
+    }
 
 	public function get_def()
 	{

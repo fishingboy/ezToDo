@@ -18,13 +18,13 @@
 /* 工作項目 */
 .jobBox               {border:1px solid #ccc; background:#eff; margin:3px 0px; padding:5px 7px; border-radius: 7px;}
 .jobBox .jobInfo      {}
-.jobBox .jobNote      {display:none}
+.jobBox .jobNote      {display:none; border: 1px solid #ccc; background: #fff; margin:5px 0px; padding: 5px; font-size:12px;}
 .jobBox .title        {}
 .jobBox .createTime   {float:right; font-size:12px; width:200px; color:#999; text-align: right;}
 .jobBox .hours        {float:right; font-size:12px; width:150px; color:#999;}
-.jobBox .more         {float:right; font-size:12px; width:50px; color:#999; text-align: center;}
+.jobBox .more         {float:right; font-size:12px; width:50px; color:#00f; text-align: center; cursor: pointer;}
 .jobBox .tools        {float:right; font-size:12px; width:50px; color:#999; text-align: center; padding:3px;}
-.jobBox:hover         {border:1px solid #ccc; background:#DCEBEB; margin:3px 0px; padding:5px 7px; border-radius: 7px;}
+.jobBox:hover         {border:1px solid #ccc; background:#EEF1FF; margin:3px 0px; padding:5px 7px; border-radius: 7px;}
 
 /* 表單 */
 .form div {min-height:25px;}

@@ -4,11 +4,22 @@ var $todo_edit =
 {
     page_init : function() 
     {
-        // 綁定事件
+        //==== 綁定事件 ====
+
+        // 新增工作
         $('#fmAdd').bind('click', this, this.add);
+
+        // 刪除工作
         $('.del_button').bind('click', this, this.del);
+
+        // 編輯工作
         $('.edit_button').bind('click', this, this.edit);
+
+        // 變更篩選條件
         $('#fmStatus').bind('change', this, this.change_status);
+
+        // 展開詳細資訊
+        $('.more').bind('click', this, this.expand_info);
     },
 
     // 編輯
@@ -23,6 +34,7 @@ var $todo_edit =
             'autoSize'  : false
         });
     },
+    
     // 編輯
     edit : function() 
     {
@@ -36,6 +48,7 @@ var $todo_edit =
             'autoSize'  : false
         });
     },
+    
     // 刪除
     del : function() 
     {
@@ -48,11 +61,19 @@ var $todo_edit =
             });
         }
     },
+    
     // 變更篩選狀態
     change_status : function()
     {
         var status = $('#fmStatus').val();
         window.location.href = "?status=" + status;
+    },
+
+    // 展開
+    expand_info : function(event) 
+    {
+        var todoID = this.id.split('_')[1];
+        $('#jobNote_' + todoID).toggle();
     }
 }
 
@@ -121,12 +142,12 @@ $(function()
                     <img id='edit_{todoID}' class='edit_button button_icon' src='<?= BASE_URL ?>/sys/images/edit.gif'>
                     <img id='del_{todoID}' class='del_button button_icon' src='<?= BASE_URL ?>/sys/images/delete.gif'>
                 </div>
-                <div class='more'>詳細</div>
+                <div id='expand_{todoID}' class='more'>詳細</div>
                 <div class='createTime'>建立時間: {createTime}</div>
                 <div class='hours'>估計需要: {hours} 小時</div>
                 <div class='title'>{title}</div>
             </div>
-            <div class='jobNote'>{note}</div>
+            <div id='jobNote_{todoID}' class='jobNote'>{note}</div>
         </div>
         {/data}
     </div>
