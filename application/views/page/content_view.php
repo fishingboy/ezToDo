@@ -19,7 +19,8 @@ var $todo_edit =
         $('#fmStatus').bind('change', this, this.change_status);
 
         // 展開詳細資訊
-        $('.more').bind('click', this, this.expand_info);
+        // $('.more').bind('click', this, this.expand_info);
+        $('.jobBox').bind('click', this, this.expand_info);
     },
 
     // 編輯
