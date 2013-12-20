@@ -43,8 +43,11 @@ class Show extends CI_Controller
      * 描述處理
      */
     private function _note($str)
-    {
-        return ($str == "") ? "無" : nl2br(htmlspecialchars($str));
+    {        
+        if ($str == "")
+            return "無";
+        else
+            return nl2br(str_replace(' ', "&nbsp;", htmlentities($str)));
     }
 
     /**
