@@ -2,6 +2,8 @@
 <head>
 <base href="<?= BASE_URL ?>/" />
 <style type="text/css">@import URL("sys/css/main.css");</style>
+<script type="text/javascript" src="sys/js/jquery.js"></script>
+<script type="text/javascript" src="sys/js/jquery.fancybox.js"></script>
 <style>
 #fmTitle       {width:490px;}
 #fmHours       {width:100px;}
@@ -9,9 +11,40 @@
 .add #fmNote   {width:850px; height:350px;}
 .edit #fmNote  {width:850px; height:300px;}
 </style>
+<script type="text/javascript">
+$(function() 
+{
+    $('#fmSave').bind('click', function() 
+    {
+        var param = 
+        {
+            ajax        : 1,
+            fmTitle     : $('#fmTitle').val(),
+            fmNote      : $('#fmNote').val(),
+            fmHours     : $('#fmHours').val(),
+            fmUsedHours : $('#fmUsedHours').val(),
+            fmStatus    : $('#fmStatus').val(),
+            fmSN        : $('#fmSN').val()
+        };
+
+        $.ajax
+        ({
+            type     : 'post',
+            data     : param,
+            dataType : 'json',
+            url      : '<?= BASE_URL ?>/form/todo_edit/edit/{todoID}',
+            error    : function(){alert('ajax error!');},
+            success  : function(data) 
+            {
+                $('#msg').text(data.msg);
+            }
+        });
+    });
+});
+</script>
 </head>
 <body>
-<form class='form <?= ($todo_status == 0) ? "add" : "edit" ?>' action='<?= BASE_URL ?>/form/todo_edit/submit/{todoID}' method='POST'>
+<form class='form <?= ($todo_status == 0) ? "add" : "edit" ?>' action='<?= BASE_URL ?>/form/todo_edit/edit/{todoID}' method='POST'>
     <input type='hidden' id='fmSN' name='fmSN' value='{todo_sn}'>
     <div style='font-weight:bold; font-size:16px;'><?= ($todo_status) ? "編輯工作" : "新增工作" ?></div>
     <div>工作名稱: <input type='text' id='fmTitle' name='fmTitle' value='{todo_title}'></div>
@@ -28,6 +61,8 @@
     <?php endif; ?>
     <div>工作描述: <br><textarea id='fmNote' name='fmNote'>{todo_note}</textarea></div>
     <input id='fmSubmit' type='submit' class='button' value='送出'>
+    <input id='fmSave' type='button' class='button' value='儲存'>
+    <span id='msg'></span>
 </form>
 </body>
 </html>

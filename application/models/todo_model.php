@@ -14,9 +14,13 @@ class Todo_model extends CI_Model
     public function get_list($status=1)
     {
         if ($status)
-            $sql = "SELECT * FROM `todo` WHERE status='$status' ORDER BY sn, todoID ASC";
+        {
+            $order = ($status == 1) ? "sn, todoID" : "completeTime DESC, updateTime DESC";
+            $sql = "SELECT * FROM `todo` WHERE status='$status' ORDER BY {$order}";
+        }
         else
             $sql = "SELECT * FROM `todo` WHERE status!='0' ORDER BY sn, todoID ASC";
+        
         $query = $this->db->query($sql);
         return $query->result();
     }
