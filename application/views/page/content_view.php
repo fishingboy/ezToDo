@@ -5,7 +5,6 @@ var $todo_edit =
     page_init : function() 
     {
         //==== 綁定事件 ====
-
         // 新增工作
         $('#fmAdd').bind('click', this, this.add);
 
@@ -19,12 +18,11 @@ var $todo_edit =
         $('#fmStatus').bind('change', this, this.change_status);
 
         // 展開詳細資訊
-        // $('.more').bind('click', this, this.expand_info);
         $('.jobBox').bind('click', this, this.expand_info);
     },
 
     // 編輯
-    add : function() 
+    add : function(event) 
     {
         $.fancybox(
         {
@@ -34,10 +32,13 @@ var $todo_edit =
             'height'    : 500,
             'autoSize'  : false
         });
+
+        // 取消氣泡事件
+        return false;
     },
     
     // 編輯
-    edit : function() 
+    edit : function(event) 
     {
         var id = this.id.split('_')[1];
         $.fancybox(
@@ -48,10 +49,13 @@ var $todo_edit =
             'height'    : 500,
             'autoSize'  : false
         });
+
+        // 取消氣泡事件
+        return false;
     },
     
     // 刪除
-    del : function() 
+    del : function(event) 
     {
         var id = this.id.split('_')[1];
         if (confirm('確定要刪除工作嗎？'))
@@ -61,20 +65,31 @@ var $todo_edit =
                 window.location.reload(true);
             });
         }
+
+        // 取消氣泡事件
+        return false;
     },
     
     // 變更篩選狀態
-    change_status : function()
+    change_status : function(event)
     {
+        event.preventDefault(); // 取消氣泡事件
         var status = $('#fmStatus').val();
         window.location.href = "?status=" + status;
+
+        // 取消氣泡事件
+        return false;
     },
 
     // 展開
     expand_info : function(event) 
     {
+        event.preventDefault(); // 取消氣泡事件
         var todoID = this.id.split('_')[1];
         $('#jobNote_' + todoID).toggle();
+
+        // 取消氣泡事件
+        return false;
     }
 }
 
@@ -137,13 +152,12 @@ $(function()
 <?php else: ?>
     <div id='jobs'>
         {data}
-        <div id='jobBox_{todoID}' class='jobBox'>
+        <div id='jobBox_{todoID}' class='jobBox clearfix'>
             <div class='jobInfo'>
                 <div class='tools'>
                     <img id='edit_{todoID}' class='edit_button button_icon' src='<?= BASE_URL ?>/sys/images/edit.gif'>
                     <img id='del_{todoID}' class='del_button button_icon' src='<?= BASE_URL ?>/sys/images/delete.gif'>
                 </div>
-                <div id='expand_{todoID}' class='more'>詳細</div>
                 <div class='createTime'>建立時間: <span class='text'>{createTime}</span></div>
                 <div class='surplusHours'>尚需: <span class='text'>{surplusHours}</span> 小時</div>
                 <div class='usedHours'>已工作: <span class='text'>{usedHours}</span> 小時</div>
