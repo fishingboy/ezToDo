@@ -10,11 +10,25 @@
 #fmUsedHours   {width:100px;}
 .add #fmNote   {width:850px; height:350px;}
 .edit #fmNote  {width:850px; height:300px;}
+#button_bar    {}
+#button_left   {float: left;}
+#button_right  {float: right;}
 </style>
 <script type="text/javascript">
-$(function() 
+var $todo_edit = 
 {
-    $('#fmSave').bind('click', function() 
+    // 頁面初始化
+    page_init : function() 
+    {
+        // 存檔
+        $('#fmSave').bind('click', this, this.save);
+
+        // 自動存檔
+        $('#fmAutoSave').bind('click', this, this.auto_save);
+    },
+
+    // 存檔
+    save : function(event) 
     {
         var param = 
         {
@@ -39,7 +53,23 @@ $(function()
                 $('#msg').text(data.msg);
             }
         });
-    });
+    },
+
+    // 自動存檔
+    auto_save : function(event) 
+    {
+        if ($('#fmAutoSave').prop('checked'))
+        {
+            $todo_edit.save();
+            window.setTimeout($todo_edit.auto_save, 5000);
+        }
+    }
+};
+
+
+$(function() 
+{
+    $todo_edit.page_init();
 });
 </script>
 </head>
@@ -60,9 +90,16 @@ $(function()
     <input type='hidden' id='fmStatus' name='fmStatus' value='{todo_status}'>
     <?php endif; ?>
     <div>工作描述: <br><textarea id='fmNote' name='fmNote'>{todo_note}</textarea></div>
-    <input id='fmSubmit' type='submit' class='button' value='送出'>
-    <input id='fmSave' type='button' class='button' value='儲存'>
-    <span id='msg'></span>
+    <div id='button_bar' class='clearfix'>
+        <div id='button_left'>
+            <input id='fmSubmit' type='submit' class='button' value='送出'>
+            <input id='fmSave' type='button' class='button' value='儲存'>
+            <span id='msg'></span>
+        </div>
+        <div id='button_right'>
+            <input type='checkbox' id='fmAutoSave' name='fmAutoSave' value='1'>自動存檔(5秒)
+        </div>
+    </div>
 </form>
 </body>
 </html>
