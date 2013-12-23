@@ -155,10 +155,13 @@ $(function()
         <div id='jobBox_{todoID}' class='jobBox clearfix'>
             <div class='jobInfo'>
                 <div class='tools'>
-                    <img id='edit_{todoID}' class='edit_button button_icon' src='<?= BASE_URL ?>/sys/images/edit.gif'>
-                    <img id='del_{todoID}' class='del_button button_icon' src='<?= BASE_URL ?>/sys/images/delete.gif'>
+                    <img id='edit_{todoID}' class='edit_button button_icon' src='<?= BASE_URL ?>/sys/images/edit.gif'><img id='del_{todoID}' class='del_button button_icon' src='<?= BASE_URL ?>/sys/images/delete.gif'>
                 </div>
-                <div class='createTime'>建立時間: <span class='text'>{createTime}</span></div>
+                <?php if ($status == 2): ?>
+                    <div class='createTime'>完成時間: <span class='text'>{completeTime}</span></div>
+                <?php else:?>
+                    <div class='createTime'>建立時間: <span class='text'>{createTime}</span></div>
+                <?php endif; ?>
                 <div class='surplusHours'>尚需: <span class='text'>{surplusHours}</span> 小時</div>
                 <div class='usedHours'>已工作: <span class='text'>{usedHours}</span> 小時</div>
                 <div class='hours'>估計需要: <span class='text'>{hours}</span> 小時</div>
