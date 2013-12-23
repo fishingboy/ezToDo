@@ -46,6 +46,7 @@ class Todo_edit extends CI_Controller
         $fmHours     = $this->input->post('fmHours');
         $fmUsedHours = $this->input->post('fmUsedHours');
         $fmStatus    = $this->input->post('fmStatus');
+        $fmOldStatus = $this->input->post('fmOldStatus');
         $fmSN        = $this->input->post('fmSN');
         $ajax        = $this->input->post('ajax');
 
@@ -58,7 +59,7 @@ class Todo_edit extends CI_Controller
             'usedHours'    => $fmUsedHours,
             'status'       => ($fmStatus) ? ($fmStatus) : 1,
             'updateTime'   => date('Y-m-d H:i:s'),
-            'completeTime' => ($fmStatus == 2) ? date('Y-m-d H:i:s') : '',
+            'completeTime' => ($fmStatus == 2 && $fmOldStatus != $fmStatus) ? date('Y-m-d H:i:s') : '',
             'sn'           => ($fmStatus) ? $fmSN : 99999999
         );
 

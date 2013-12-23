@@ -85,6 +85,7 @@ $(function()
         <input type='radio' id='fmStatus'  name='fmStatus' value='1' <?= ($todo_status == 1) ? "checked" : "" ?> />未完成
         <input type='radio' id='fmStatus'  name='fmStatus' value='2' <?= ($todo_status == 2) ? "checked" : "" ?> />完成
         <input type='radio' id='fmStatus'  name='fmStatus' value='3' <?= ($todo_status == 3) ? "checked" : "" ?> />擱置
+        <input type='hidden' id='fmOldStatus' name='fmOldStatus' value='{todo_status}'>
     </div>
     <?php else:?>
     <input type='hidden' id='fmStatus' name='fmStatus' value='{todo_status}'>
