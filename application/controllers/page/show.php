@@ -5,7 +5,11 @@ class Show extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model("todo_model");
+        $this->load->model("todo_model");
+		$this->load->model("login_model");
+
+        // 請先登入
+        $this->login_model->is_login_first();
 	}
 
 	public function index()
