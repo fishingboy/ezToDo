@@ -44,6 +44,7 @@ class Login_model extends CI_Model
     public function check_login_password($account, $password)
     {
         $query = $this->db->query("SELECT * FROM user WHERE account=?", array($account));
+        if ($query->num_rows() == 0) return FALSE;
         if ($query->row()->password == md5($password))
         {
             return $query->row();
