@@ -21,6 +21,7 @@ class Login extends CI_Controller
             if ($user_data !== false)
             {
                 $this->session->set_userdata($user_data);
+                $back_url = ($back_url) ? $back_url : BASE_URL;
                 header("Location: {$back_url}");
                 exit;
             }
