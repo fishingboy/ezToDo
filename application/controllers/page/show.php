@@ -5,7 +5,11 @@ class Show extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model("todo_model");
+        $this->load->model("todo_model");
+		$this->load->model("login_model");
+
+        // 請先登入
+        $this->login_model->is_login_first();
 	}
 
 	public function index()
@@ -22,6 +26,7 @@ class Show extends CI_Controller
 		{ 
             $data[$i]->note         = $this->_note($data[$i]->note);
             $data[$i]->createTime   = $this->_time($data[$i]->createTime);
+            $data[$i]->completeTime = $this->_time($data[$i]->completeTime);
             $data[$i]->hours        = ($data[$i]->hours) ? floatval($data[$i]->hours) : '-';
             $data[$i]->usedHours    = ($data[$i]->usedHours) ? floatval($data[$i]->usedHours) : '-';
             $data[$i]->surplusHours = ($data[$i]->hours != '-') ? $data[$i]->hours - floatval($data[$i]->usedHours) : '-';

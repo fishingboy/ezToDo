@@ -38,7 +38,7 @@ class Todo_edit extends CI_Controller
     /**
      * 編輯送出
      */
-    public function submit($todoID=0)
+    public function edit($todoID=0)
     {
         // 取得參數
         $fmTitle     = $this->input->post('fmTitle');
@@ -46,7 +46,9 @@ class Todo_edit extends CI_Controller
         $fmHours     = $this->input->post('fmHours');
         $fmUsedHours = $this->input->post('fmUsedHours');
         $fmStatus    = $this->input->post('fmStatus');
+        $fmOldStatus = $this->input->post('fmOldStatus');
         $fmSN        = $this->input->post('fmSN');
+        $ajax        = $this->input->post('ajax');
 
         // 整理新增資料
         $insert_data = array
@@ -57,7 +59,7 @@ class Todo_edit extends CI_Controller
             'usedHours'    => $fmUsedHours,
             'status'       => ($fmStatus) ? ($fmStatus) : 1,
             'updateTime'   => date('Y-m-d H:i:s'),
-            'completeTime' => ($fmStatus == 2) ? date('Y-m-d H:i:s') : '',
+            'completeTime' => ($fmStatus == 2 && $fmOldStatus != $fmStatus) ? date('Y-m-d H:i:s') : '',
             'sn'           => ($fmStatus) ? $fmSN : 99999999
         );
 
@@ -65,7 +67,14 @@ class Todo_edit extends CI_Controller
         $this->todo_model->add_todo($todoID, $insert_data);
 
         // 畫面重整
-        echo "<script>parent.location.reload(true);</script>";
+        if ($ajax)
+        {
+            $time = date('Y-m-d H:i:s');
+            $ret = array('status' => TRUE, 'msg' => "資料已儲存於 {$time}");
+            echo json_encode($ret);
+        }
+        else
+            echo "<script>parent.location.reload(true);</script>";
     }
 
     /**

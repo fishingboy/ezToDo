@@ -21,10 +21,10 @@ body  {font-family: "Courier New"}
 .jobBox .jobInfo      {}
 .jobBox .jobNote      {display:none; border: 1px solid #ccc; background: #fff; margin:5px 0px; padding: 5px; font-size:12px;}
 .jobBox .title        {}
-.jobBox .createTime   {float:right; font-size:12px; width:140px; color:#999; text-align: center; padding: 3px 0px;}
-.jobBox .hours        {float:right; font-size:12px; width:120px; color:#999; padding: 3px 0px;}
-.jobBox .usedHours    {float:right; font-size:12px; width:100px; color:#999; padding: 3px 0px;}
-.jobBox .surplusHours {float:right; font-size:12px; width:80px; color:#999; padding: 3px 0px;}
+.jobBox .createTime   {float:right; font-size:12px; width:150px; color:#999; text-align: center; padding: 3px 0px;}
+.jobBox .hours        {float:right; font-size:12px; width:130px; color:#999; padding: 3px 0px;}
+.jobBox .usedHours    {float:right; font-size:12px; width:110px; color:#999; padding: 3px 0px;}
+.jobBox .surplusHours {float:right; font-size:12px; width:90px; color:#999; padding: 3px 0px;}
 .jobBox .more         {float:right; font-size:12px; width:50px; color:#00f; text-align: center; cursor: pointer; padding: 3px 0px;}
 .jobBox .tools        {float:right; font-size:12px; width:50px; color:#999; text-align: center;  padding: 3px 0px;}
 .jobBox:hover         {border:1px solid #ccc; background:#EEF1FF; margin:3px 0px; padding:5px 7px; border-radius: 7px;}
