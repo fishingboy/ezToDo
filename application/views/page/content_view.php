@@ -130,16 +130,14 @@ $(function()
             for (var i=0, i_max=curr_todo_map.length; i<i_max; i++)
             {
                 var _todoID = curr_todo_map[i].split('_')[1];
-                $('#jobNo_' + _todoID).html(i+1);
+                $('#jobNo_' + _todoID).html((i+1) + '.');
             }
 
             // 呼叫 ajax 排序
             $.get('<?= BASE_URL ?>/form/todo_edit/sort/' + todoID + '/' + sn, function(data) 
             {
-                // window.location.reload(true);s
+                // window.location.reload(true);
             });
-
-            // return true;
         }
     });
 });
