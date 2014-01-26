@@ -121,17 +121,25 @@ $(function()
             var todoID = id.split('_')[1];
 
             // 判斷是往上還是往下
-            console.log(sn + " > " + old_sn);
             if (sn > old_sn) sn++;
 
             // 寫回全域變數
             curr_todo_map = todo_map;
 
+            // 更新畫面上的順序編號
+            for (var i=0, i_max=curr_todo_map.length; i<i_max; i++)
+            {
+                var _todoID = curr_todo_map[i].split('_')[1];
+                $('#jobNo_' + _todoID).html(i+1);
+            }
+
             // 呼叫 ajax 排序
             $.get('<?= BASE_URL ?>/form/todo_edit/sort/' + todoID + '/' + sn, function(data) 
             {
-                // window.location.reload(true);
+                // window.location.reload(true);s
             });
+
+            // return true;
         }
     });
 });
@@ -154,7 +162,7 @@ $(function()
         {data}
         <div id='jobBox_{todoID}' class='jobBox clearfix'>
             <div class='jobInfo'>
-                <div class='no'>{no}.</div>
+                <div id='jobNo_{todoID}' class='no'>{no}.</div>
                 <div class='tools'>
                     <img id='edit_{todoID}' class='edit_button button_icon' src='<?= BASE_URL ?>/sys/images/edit.gif'><img id='del_{todoID}' class='del_button button_icon' src='<?= BASE_URL ?>/sys/images/delete.gif'>
                 </div>
