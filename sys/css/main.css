@@ -20,6 +20,7 @@ body  {font-family: "Courier New"}
 .jobBox               {border:1px solid #ccc; background:#eff; margin:3px 0px; padding:5px 7px; border-radius: 7px;}
 .jobBox .jobInfo      {}
 .jobBox .jobNote      {display:none; border: 1px solid #ccc; background: #fff; margin:5px 0px; padding: 5px; font-size:12px;}
+.jobBox .no           {float:left; font-size:12px; width:30px; color:#999; padding:3px 7px 3px 3px; text-align:center;}
 .jobBox .title        {}
 .jobBox .createTime   {float:right; font-size:12px; width:150px; color:#999; text-align: center; padding: 3px 0px;}
 .jobBox .hours        {float:right; font-size:12px; width:130px; color:#999; padding: 3px 0px;}

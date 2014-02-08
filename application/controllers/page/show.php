@@ -24,6 +24,7 @@ class Show extends CI_Controller
 		// 資料處理
 		for ($i=0, $i_max=count($data); $i < $i_max; $i++) 
 		{ 
+            $data[$i]->no           = $i + 1;
             $data[$i]->note         = $this->_note($data[$i]->note);
             $data[$i]->createTime   = $this->_time($data[$i]->createTime);
             $data[$i]->completeTime = $this->_time($data[$i]->completeTime);
