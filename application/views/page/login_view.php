@@ -1,6 +1,8 @@
 <html>
 <head>
+<meta charset="utf-8" />
 <title>Login Page</title>
+<style type="text/css">@import URL("sys/css/main.css");</style>
 <style>
 body {height: 100%;}
 form {margin:0px;}
