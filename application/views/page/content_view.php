@@ -107,7 +107,7 @@ $(function()
         return $(this).attr('id');
     });
 
-
+    <?php if (defined('USER_ACCOUNT')): ?>
     $("#jobs").sortable(
     {
         stop: function( event, ui ) 
@@ -145,6 +145,7 @@ $(function()
             });
         }
     });
+    <?php endif; ?>
 });
 </script>
 <div id='tool_bar' class='clearfix'>
