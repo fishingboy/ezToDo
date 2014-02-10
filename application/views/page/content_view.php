@@ -5,14 +5,17 @@ var $todo_edit =
     page_init : function() 
     {
         //==== 綁定事件 ====
-        // 新增工作
-        $('#fmAdd').bind('click', this, this.add);
+        
+        <?php if (defined('USER_ACCOUNT')): ?>
+            // 新增工作
+            $('#fmAdd').bind('click', this, this.add);
 
-        // 刪除工作
-        $('.del_button').bind('click', this, this.del);
+            // 刪除工作
+            $('.del_button').bind('click', this, this.del);
 
-        // 編輯工作
-        $('.edit_button').bind('click', this, this.edit);
+            // 編輯工作
+            $('.edit_button').bind('click', this, this.edit);
+        <?php endif; ?>
 
         // 變更篩選條件
         $('#fmStatus').bind('change', this, this.change_status);
@@ -21,54 +24,56 @@ var $todo_edit =
         $('.jobBox').bind('click', this, this.expand_info);
     },
 
-    // 編輯
-    add : function(event) 
-    {
-        $.fancybox(
+    <?php if (defined('USER_ACCOUNT')): ?>
+        // 編輯
+        add : function(event) 
         {
-            'type'      : 'iframe',
-            'href'      : '<?= BASE_URL ?>/form/todo_edit/index',
-            'width'     : 900,
-            'height'    : 500,
-            'autoSize'  : false
-        });
-
-        // 取消氣泡事件
-        return false;
-    },
-    
-    // 編輯
-    edit : function(event) 
-    {
-        var id = this.id.split('_')[1];
-        $.fancybox(
-        {
-            'type'      : 'iframe',
-            'href'      : '<?= BASE_URL ?>/form/todo_edit/index/' + id,
-            'width'     : 900,
-            'height'    : 500,
-            'autoSize'  : false
-        });
-
-        // 取消氣泡事件
-        return false;
-    },
-    
-    // 刪除
-    del : function(event) 
-    {
-        var id = this.id.split('_')[1];
-        if (confirm('確定要刪除工作嗎？'))
-        {
-            $.get('<?= BASE_URL ?>/form/todo_edit/del/' + id, function(data) 
+            $.fancybox(
             {
-                window.location.reload(true);
+                'type'      : 'iframe',
+                'href'      : '<?= BASE_URL ?>/form/todo_edit/index',
+                'width'     : 900,
+                'height'    : 500,
+                'autoSize'  : false
             });
-        }
 
-        // 取消氣泡事件
-        return false;
-    },
+            // 取消氣泡事件
+            return false;
+        },
+        
+        // 編輯
+        edit : function(event) 
+        {
+            var id = this.id.split('_')[1];
+            $.fancybox(
+            {
+                'type'      : 'iframe',
+                'href'      : '<?= BASE_URL ?>/form/todo_edit/index/' + id,
+                'width'     : 900,
+                'height'    : 500,
+                'autoSize'  : false
+            });
+
+            // 取消氣泡事件
+            return false;
+        },
+        
+        // 刪除
+        del : function(event) 
+        {
+            var id = this.id.split('_')[1];
+            if (confirm('確定要刪除工作嗎？'))
+            {
+                $.get('<?= BASE_URL ?>/form/todo_edit/del/' + id, function(data) 
+                {
+                    window.location.reload(true);
+                });
+            }
+
+            // 取消氣泡事件
+            return false;
+        },
+    <?php endif; ?>
     
     // 變更篩選狀態
     change_status : function(event)
@@ -143,7 +148,9 @@ $(function()
 });
 </script>
 <div id='tool_bar' class='clearfix'>
+    <?php if (defined('USER_ACCOUNT')): ?>
     <div id='tool_left'><input id='fmAdd' type='button' class='button' value='新增'></div>
+    <?php endif; ?>
     <div id='tool_right'>
         <select id='fmStatus'>
             <option value='0' <?= ($status == 0) ? "selected" : "" ?> />所有工作</option>
@@ -162,7 +169,9 @@ $(function()
             <div class='jobInfo'>
                 <div id='jobNo_{todoID}' class='no'>{no}.</div>
                 <div class='tools'>
+                    <?php if (defined('USER_ACCOUNT')): ?>
                     <img id='edit_{todoID}' class='edit_button button_icon' src='<?= BASE_URL ?>/sys/images/edit.gif'><img id='del_{todoID}' class='del_button button_icon' src='<?= BASE_URL ?>/sys/images/delete.gif'>
+                    <?php endif; ?>
                 </div>
                 <?php if ($status == 2): ?>
                     <div class='createTime'>完成時間: <span class='text'>{completeTime}</span></div>

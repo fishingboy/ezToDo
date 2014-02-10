@@ -9,7 +9,10 @@ class Show extends CI_Controller
 		$this->load->model("login_model");
 
         // 請先登入
-        $this->login_model->is_login_first();
+        if (VISIT_MODE != 1)
+        {
+            $this->login_model->is_login_first();
+        }
 	}
 
 	public function index()

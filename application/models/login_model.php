@@ -13,10 +13,18 @@ class Login_model extends CI_Model
      */
     public function is_login_first()
     {
+        $visit = $this->input->get('visit');
+        if ($visit == 1 || $this->session->userdata('visit_mode') == 1)
+        {
+            define('VISIT_MODE', TRUE);
+        }
+
         if (!$this->is_login())
         {
             $this->go_login_page();
+            exit;
         }
+        define('USER_ACCOUNT', $this->session->userdata('account'));
     }
 
     /**
