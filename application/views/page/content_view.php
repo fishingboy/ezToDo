@@ -153,7 +153,7 @@ $(function()
     <div id='tool_left'><input id='fmAdd' type='button' class='button' value='新增'></div>
     <?php endif; ?>
     <div id='tool_right'>
-        <input id='fmSearch' type='text'>
+        <!-- <input id='fmSearch' type='text'> -->
         <select id='fmStatus'>
             <option value='0' <?= ($status == 0) ? "selected" : "" ?> />所有工作</option>
             <option value='1' <?= ($status == 1) ? "selected" : "" ?> />未完成</option>
