@@ -26,5 +26,10 @@ class Common_model extends CI_Model
             define('VISIT_MODE', 1);
             $this->session->set_userdata('visit_mode', 1);
         }
+        else
+        {
+            define('VISIT_MODE', 0);
+            $this->session->set_userdata('visit_mode', 0);
+        }
     }
 }

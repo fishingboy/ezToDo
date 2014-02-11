@@ -24,7 +24,6 @@ class Login_model extends CI_Model
             $this->go_login_page();
             exit;
         }
-        define('USER_ACCOUNT', $this->session->userdata('account'));
     }
 
     /**
