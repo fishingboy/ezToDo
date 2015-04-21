@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Show extends CI_Controller 
+class Show extends CI_Controller
 {
 	public function __construct()
 	{
@@ -13,6 +13,8 @@ class Show extends CI_Controller
         {
             $this->login_model->is_login_first();
         }
+
+        include("D:\www\codefinder\code_finder.php");
 	}
 
 	public function index()
@@ -25,8 +27,8 @@ class Show extends CI_Controller
 		$data = $this->todo_model->get_list($status);
 
 		// 資料處理
-		for ($i=0, $i_max=count($data); $i < $i_max; $i++) 
-		{ 
+		for ($i=0, $i_max=count($data); $i < $i_max; $i++)
+		{
             $data[$i]->no           = $i + 1;
             $data[$i]->note         = $this->_note($data[$i]->note);
             $data[$i]->createTime   = $this->_time($data[$i]->createTime);
@@ -52,7 +54,7 @@ class Show extends CI_Controller
      * 描述處理
      */
     private function _note($str)
-    {        
+    {
         if ($str == "")
             return "無";
         else

@@ -1,14 +1,17 @@
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script type="text/javascript">
-var $todo_edit = 
+var $todo_edit =
 {
-    page_init : function() 
+    page_init : function()
     {
         //==== 綁定事件 ====
-        
+
         <?php if (defined('USER_ACCOUNT')): ?>
             // 新增工作
             $('#fmAdd').bind('click', this, this.add);
+
+            // 刪除工作(批次)
+            $('#fmDel').bind('click', this, this.del_todos);
 
             // 刪除工作
             $('.del_button').bind('click', this, this.del);
@@ -22,11 +25,14 @@ var $todo_edit =
 
         // 展開詳細資訊
         $('.jobBox').bind('click', this, this.expand_info);
+
+        // 點選 checkbox
+        $('.jobChk').bind('click', this, this.stop_bubble);
     },
 
     <?php if (defined('USER_ACCOUNT')): ?>
         // 編輯
-        add : function(event) 
+        add : function(event)
         {
             $.fancybox(
             {
@@ -40,9 +46,9 @@ var $todo_edit =
             // 取消氣泡事件
             return false;
         },
-        
+
         // 編輯
-        edit : function(event) 
+        edit : function(event)
         {
             var id = this.id.split('_')[1];
             $.fancybox(
@@ -57,14 +63,14 @@ var $todo_edit =
             // 取消氣泡事件
             return false;
         },
-        
+
         // 刪除
-        del : function(event) 
+        del : function(event)
         {
             var id = this.id.split('_')[1];
             if (confirm('確定要刪除工作嗎？'))
             {
-                $.get('<?= BASE_URL ?>/form/todo_edit/del/' + id, function(data) 
+                $.get('<?= BASE_URL ?>/form/todo_edit/del/' + id, function(data)
                 {
                     window.location.reload(true);
                 });
@@ -73,33 +79,63 @@ var $todo_edit =
             // 取消氣泡事件
             return false;
         },
+
+        // 刪除
+        del_todos : function(event)
+        {
+            var ids = [];
+            $('.jobChk').each(function()
+            {
+                if (this.checked)
+                {
+                    ids.push(this.id.split('_')[1]);
+                }
+            });
+
+            if (ids.length == 0)
+            {
+                alert('請選擇工作！');
+                return false;
+            }
+
+            if (confirm('確定要刪除工作嗎？'))
+            {
+                $.get('<?= BASE_URL ?>/form/todo_edit/del/' + ids.join('-'), function(data)
+                {
+                    window.location.reload(true);
+                });
+            }
+
+            // 取消氣泡事件
+            event.stopPropagation();
+        },
+
+        // 取消氣泡事件
+        stop_bubble : function(event)
+        {
+            event.stopPropagation(); // 取消氣泡事件
+        },
     <?php endif; ?>
-    
+
     // 變更篩選狀態
     change_status : function(event)
     {
-        event.preventDefault(); // 取消氣泡事件
+        event.stopPropagation(); // 取消氣泡事件
         var status = $('#fmStatus').val();
         window.location.href = "?status=" + status;
-
-        // 取消氣泡事件
-        return false;
     },
 
     // 展開
-    expand_info : function(event) 
+    expand_info : function(event)
     {
-        event.preventDefault(); // 取消氣泡事件
+        event.stopPropagation(); // 取消氣泡事件
         var todoID = this.id.split('_')[1];
         $('#jobNote_' + todoID).toggle();
-
-        // 取消氣泡事件
-        return false;
     }
 }
 
-$(function() 
-{   
+$(function()
+{
     $todo_edit.page_init();
 
     var curr_todo_map = $('#jobs').children().map(function()
@@ -110,7 +146,7 @@ $(function()
     <?php if (defined('USER_ACCOUNT')): ?>
     $("#jobs").sortable(
     {
-        stop: function( event, ui ) 
+        stop: function( event, ui )
         {
             var id = ui.item.attr('id');
 
@@ -139,7 +175,7 @@ $(function()
             }
 
             // 呼叫 ajax 排序
-            $.get('<?= BASE_URL ?>/form/todo_edit/sort/' + todoID + '/' + sn, function(data) 
+            $.get('<?= BASE_URL ?>/form/todo_edit/sort/' + todoID + '/' + sn, function(data)
             {
                 // window.location.reload(true);
             });
@@ -151,6 +187,7 @@ $(function()
 <div id='tool_bar' class='clearfix'>
     <?php if (defined('USER_ACCOUNT')): ?>
     <div id='tool_left'><input id='fmAdd' type='button' class='button' value='新增'></div>
+    <div id='tool_left'><input id='fmDel' type='button' class='button' value='刪除'></div>
     <?php endif; ?>
     <div id='tool_right'>
         <!-- <input id='fmSearch' type='text'> -->
@@ -169,7 +206,10 @@ $(function()
         {data}
         <div id='jobBox_{todoID}' class='jobBox clearfix'>
             <div class='jobInfo'>
-                <div id='jobNo_{todoID}' class='no'>{no}.</div>
+                <div id='jobNo_{todoID}' class='no'>
+                    <input id='chk_{todoID}' class='jobChk' type='checkbox' value='1'>
+                    {no}.
+                </div>
                 <div class='tools'>
                     <?php if (defined('USER_ACCOUNT')): ?>
                     <img id='edit_{todoID}' class='edit_button button_icon' src='<?= BASE_URL ?>/sys/images/edit.gif'><img id='del_{todoID}' class='del_button button_icon' src='<?= BASE_URL ?>/sys/images/delete.gif'>
@@ -183,7 +223,7 @@ $(function()
                 <div class='surplusHours'>尚需: <span class='text'>{surplusHours}</span> 小時</div>
                 <div class='usedHours'>已工作: <span class='text'>{usedHours}</span> 小時</div>
                 <div class='hours'>估計需要: <span class='text'>{hours}</span> 小時</div>
-                <div class='title'>{title}</div>                
+                <div class='title'>{title}</div>
             </div>
             <div id='jobNote_{todoID}' class='jobNote'>{note}</div>
         </div>
