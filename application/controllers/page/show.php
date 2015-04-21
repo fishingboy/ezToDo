@@ -13,8 +13,6 @@ class Show extends CI_Controller
         {
             $this->login_model->is_login_first();
         }
-
-        include("D:\www\codefinder\code_finder.php");
 	}
 
 	public function index()
