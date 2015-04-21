@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Todo_edit extends CI_Controller 
+class Todo_edit extends CI_Controller
 {
     public $debug_info;
 
@@ -82,7 +82,8 @@ class Todo_edit extends CI_Controller
      */
     public function del($todoID)
     {
-        $this->todo_model->del_todo($todoID);
+        $ids = explode('-', $todoID);
+        $this->todo_model->del_todo($ids);
         $sql = $this->db->last_query();
         $ret = array('status' => TRUE, 'sql' => $sql,  'msg' => '刪除完畢!');
         echo json_encode($ret);

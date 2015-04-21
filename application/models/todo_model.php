@@ -20,7 +20,7 @@ class Todo_model extends CI_Model
         }
         else
             $sql = "SELECT * FROM `todo` WHERE status!='0' ORDER BY sn, todoID ASC";
-        
+
         $query = $this->db->query($sql);
         return $query->result();
     }
@@ -49,12 +49,12 @@ class Todo_model extends CI_Model
     public function add_todo($todoID, $data)
     {
         // 更新資料
-        $this->db->where('todoID', $todoID)->update('todo', $data); 
+        $this->db->where('todoID', $todoID)->update('todo', $data);
 
         // 重整順序
         $this->rebuild_sn();
 
-        // 傳回 id 
+        // 傳回 id
         return $this->db->insert_id();
     }
 
@@ -63,7 +63,16 @@ class Todo_model extends CI_Model
      */
     public function del_todo($todoID)
     {
-        $this->db->where('todoID', $todoID)->delete('todo'); 
+        if (is_array($todoID))
+        {
+            $this->db->where_in('todoID', $todoID)->delete('todo');
+        }
+        else
+        {
+            $this->db->where('todoID', $todoID)->delete('todo');
+        }
+
+        // 重新排序
         $this->rebuild_sn();
         return TRUE;
     }
@@ -73,7 +82,7 @@ class Todo_model extends CI_Model
      */
     public function del_tmp_todo()
     {
-        $this->db->where('status', 0)->delete('todo'); 
+        $this->db->where('status', 0)->delete('todo');
         return TRUE;
     }
 
@@ -84,7 +93,7 @@ class Todo_model extends CI_Model
     {
         // 插入到兩點之間
         $this->_CI->debug_info['sn'] = $sn;
-        
+
         $sn = intval($sn . '0') + 5;
         $sql = "UPDATE `todo` SET sn=? WHERE todoID=?";
         $this->db->query($sql, array($sn, $todoID));
