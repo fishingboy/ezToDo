@@ -2,7 +2,14 @@
 <head>
 <meta charset="utf-8" />
 <title>Login Page</title>
-<style type="text/css">@import URL("sys/css/main.css");</style>
+<style type="text/css">@import URL("/sys/css/main.css");</style>
+<script type="text/javascript" src='/sys/js/jquery.js'></script>
+<script>
+$(function()
+{
+    $('#fmAccount').focus();
+});
+</script>
 <style>
 body {height: 100%;}
 form {margin:0px;}
@@ -17,8 +24,8 @@ form {margin:0px;}
 <div id='login_box'>
     <h1 class='title'>ToDo System</h1>
     <form method='post' action='<?= BASE_URL ?>/page/login'>
-        <div class='row'>帳號: <input name='fmAccount' type='text'></div>
-        <div class='row'>密碼: <input name='fmPassword' type='password'></div>
+        <div class='row'>帳號: <input id='fmAccount' name='fmAccount' type='text'></div>
+        <div class='row'>密碼: <input id='fmPassword' name='fmPassword' type='password'></div>
         <div class='row'>
             <input type='submit' value='確定'>
             <input type='reset' value='取消'>
