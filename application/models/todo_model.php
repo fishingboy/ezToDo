@@ -13,15 +13,10 @@ class Todo_model extends CI_Model
      */
     public function get_list($status=1)
     {
-        if ($status)
-        {
-            $order = ($status == 1) ? "sn, todoID" : "completeTime DESC, updateTime DESC";
-            $sql = "SELECT * FROM `todo` WHERE status='$status' ORDER BY {$order}";
-        }
-        else
-            $sql = "SELECT * FROM `todo` WHERE status!='0' ORDER BY sn, todoID ASC";
-
-        $query = $this->db->query($sql);
+        $status = ($status) ? $status : 0;
+        $order = ($status == 1) ? "sn, todoID" : "completeTime DESC, updateTime DESC";
+        $sql = "SELECT * FROM `todo` WHERE status=? AND userID=? ORDER BY {$order}";
+        $query = $this->db->query($sql, array($status, USER_ID));
         return $query->result();
     }
 
@@ -33,8 +28,8 @@ class Todo_model extends CI_Model
         if ($todoID == 0)
         {
             $this->del_tmp_todo();
-            $sql = "INSERT INTO `todo` SET createTime=now()";
-            $query = $this->db->query($sql);
+            $sql = "INSERT INTO `todo` SET createTime=now(), userID=?";
+            $query = $this->db->query($sql, array(USER_ID));
             $todoID = $this->db->insert_id();
         }
 
@@ -95,8 +90,8 @@ class Todo_model extends CI_Model
         $this->_CI->debug_info['sn'] = $sn;
 
         $sn = intval($sn . '0') + 5;
-        $sql = "UPDATE `todo` SET sn=? WHERE todoID=?";
-        $this->db->query($sql, array($sn, $todoID));
+        $sql = "UPDATE `todo` SET sn=? WHERE todoID=? AND userID=?";
+        $this->db->query($sql, array($sn, $todoID, USER_ID));
 
         $this->_CI->debug_info['todoID'] = $todoID;
         $this->_CI->debug_info['update_sn'] = $sn;
@@ -115,12 +110,12 @@ class Todo_model extends CI_Model
                        (
                             SELECT todoID, (@rownum := @rownum + 10) as rownum
                             FROM todo, (SELECT @rownum :=0) as R
-                            WHERE status='1'
+                            WHERE status='1' AND userID=?
                             ORDER BY sn ASC, todoID ASC
                        ) as SN
                 SET T.sn = SN.rownum
                 WHERE T.todoID=SN.todoID";
-        $this->db->query($sql);
+        $this->db->query($sql, array(USER_ID));
         return TRUE;
     }
 }

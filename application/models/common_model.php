@@ -17,6 +17,8 @@ class Common_model extends CI_Model
         // 判斷是否已登入
         if ($this->session->userdata('account'))
         {
+            /* 登入常數 */
+            define('USER_ID', $this->session->userdata('id'));
             define('USER_ACCOUNT', $this->session->userdata('account'));
         }
 
