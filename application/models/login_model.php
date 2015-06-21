@@ -19,7 +19,7 @@ class Login_model extends CI_Model
             define('VISIT_MODE', TRUE);
         }
 
-        if (!$this->is_login())
+        if ( ! $this->is_login())
         {
             $this->go_login_page();
             exit;
@@ -31,8 +31,7 @@ class Login_model extends CI_Model
      */
     public function is_login()
     {
-        $account = $this->session->userdata('account');
-        return ($account) ? TRUE : FALSE;
+        return (defined('USER_ACCOUNT') && USER_ACCOUNT) ? TRUE : FALSE;
     }
 
     /**

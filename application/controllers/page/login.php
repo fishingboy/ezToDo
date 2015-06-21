@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Login extends CI_Controller 
+class Login extends CI_Controller
 {
 	public function __construct()
 	{
@@ -28,12 +28,6 @@ class Login extends CI_Controller
 
         $back_url = $this->input->get('back_url');
         $this->parser->parse("page/login_view", array('back_url' => $back_url));
-    }
-
-    public function test()
-    {
-        echo $this->session->userdata('account') . "<br>";
-        echo $this->session->userdata('password') . "<br>";
     }
 
     public function logout()
