@@ -27,13 +27,15 @@ class Show extends CI_Controller
 		// 資料處理
 		for ($i=0, $i_max=count($data); $i < $i_max; $i++)
 		{
-            $data[$i]->no           = $i + 1;
-            $data[$i]->note         = $this->_note($data[$i]->note);
-            $data[$i]->createTime   = $this->_time($data[$i]->createTime);
-            $data[$i]->completeTime = $this->_time($data[$i]->completeTime);
-            $data[$i]->hours        = ($data[$i]->hours) ? floatval($data[$i]->hours) : '-';
-            $data[$i]->usedHours    = ($data[$i]->usedHours) ? floatval($data[$i]->usedHours) : '-';
-            $data[$i]->surplusHours = ($data[$i]->hours != '-') ? $data[$i]->hours - floatval($data[$i]->usedHours) : '-';
+            $data[$i]->no             = $i + 1;
+            $data[$i]->note           = $this->_note($data[$i]->note);
+            $data[$i]->createTime     = $this->_time($data[$i]->createTime);
+            $data[$i]->completeTime   = $this->_time($data[$i]->completeTime);
+            $data[$i]->hours          = ($data[$i]->hours) ? floatval($data[$i]->hours) : '-';
+            $data[$i]->usedHours      = ($data[$i]->usedHours) ? floatval($data[$i]->usedHours) : '-';
+            $data[$i]->surplusHours   = ($data[$i]->hours != '-') ? $data[$i]->hours - floatval($data[$i]->usedHours) : '-';
+            $data[$i]->due_time       = substr($data[$i]->due_time, 5, 11);
+            $data[$i]->due_time_short = substr($data[$i]->due_time, 0, 5);
 		}
 
 		// 整理 view data

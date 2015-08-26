@@ -1,11 +1,11 @@
 <?php
 class Todo_model extends CI_Model
 {
-    var $_CI;
+    private $_CI;
 
     public function __construct()
     {
-        $_CI = & get_instance();
+        $this->_CI = & get_instance();
     }
 
     /**
@@ -17,7 +17,26 @@ class Todo_model extends CI_Model
         $order = ($status == 1) ? "sn, todoID" : "completeTime DESC, updateTime DESC";
         $sql = "SELECT * FROM `todo` WHERE status=? AND userID=? ORDER BY {$order}";
         $query = $this->db->query($sql, array($status, USER_ID));
-        return $query->result();
+        $result = $query->result();
+
+
+        // 加上完工時間
+        $this->load->library('worktime');
+        foreach ($result as $key => $row)
+        {
+            // 開始時間為目前時間
+            if ( ! isset($curr_time))
+            {
+                $curr_time = date('Y-m-d H:i:s');
+            }
+
+            // 取得完工時間
+            $remain_time = $row->hours - $row->usedHours;
+            $curr_time = $this->_CI->worktime->get_due_time($curr_time, $remain_time);
+            $result[$key]->due_time = $curr_time;
+        }
+
+        return $result;
     }
 
     /**
