@@ -37,15 +37,18 @@ class Show extends CI_Controller
 		}
 
 		// 整理 view data
-		$view_data = array
-		(
+		$view_data = [
 			'status' => $status,
 			'data'   => $data
-		);
+		];
 
 		// 顯示
+        $navi    = $this->parser->parse("page/navi_view", [], true);
 		$content = $this->parser->parse("page/content_view", $view_data, true);
-	    $this->parser->parse("page/main_view", array('content' => $content));
+	    $this->parser->parse("page/main_view", [
+            'navi'    => $navi,
+            'content' => $content,
+        ]);
 	}
 
     /**
