@@ -2,7 +2,7 @@ body  {font-family: "Courier New"}
 input {border:1px solid #ccc;}
 input[type="text"] {border:1px solid #ccc;}
 
-#base {margin:0px auto; width:1250px;}
+#base {margin:0px auto; width:1440px;}
 
 /* clearfix */
 .clearfix        {zoom: 1;}
@@ -21,19 +21,21 @@ input[type="text"] {border:1px solid #ccc;}
 #tool_bar #tool_right {float:right;}
 
 /* 工作項目 */
-.jobBox               {border:1px solid #ccc; background:#eff; margin:3px 0px; padding:5px 7px; border-radius: 7px;}
-.jobBox .jobInfo      {}
-.jobBox .jobNote      {display:none; border: 1px solid #ccc; background: #fff; margin:5px 0px 5px 40px; padding: 5px; font-size:12px;}
-.jobBox .no           {float:left; font-size:12px; width:60px; color:#999; padding:3px 7px 3px 3px; text-align:center;}
-.jobBox .title        {}
-.jobBox .createTime   {float:right; font-size:12px; width:150px; color:#999; text-align: center; padding: 3px 0px;}
-.jobBox .hours        {float:right; font-size:12px; width:130px; color:#999; padding: 3px 0px;}
-.jobBox .usedHours    {float:right; font-size:12px; width:110px; color:#999; padding: 3px 0px;}
-.jobBox .surplusHours {float:right; font-size:12px; width:90px; color:#999; padding: 3px 0px;}
-.jobBox .more         {float:right; font-size:12px; width:50px; color:#00f; text-align: center; cursor: pointer; padding: 3px 0px;}
-.jobBox .tools        {float:right; font-size:12px; width:50px; color:#999; text-align: center;  padding: 3px 0px;}
-.jobBox:hover         {border:1px solid #ccc; background:#EEF1FF; margin:3px 0px; padding:5px 7px; border-radius: 7px;}
-.jobBox .text         {color:#000;}
+.jobBox                 {border:1px solid #ccc; background:#eff; margin:3px 0px; padding:5px 7px; border-radius: 7px;}
+.jobBox .jobInfo        {}
+.jobBox .jobNote        {display:none; border: 1px solid #ccc; background: #fff; margin:5px 0px 5px 40px; padding: 5px; font-size:12px;}
+.jobBox .no             {float:left; font-size:12px; width:60px; color:#999; padding:3px 7px 3px 3px; text-align:center;}
+.jobBox .title          {}
+.jobBox .createTime     {float:right; font-size:12px; width:150px; color:#999; text-align: center; padding: 3px 0px;}
+.jobBox .hours          {float:right; font-size:12px; width:130px; color:#999; padding: 3px 0px;}
+.jobBox .usedHours      {float:right; font-size:12px; width:110px; color:#999; padding: 3px 0px;}
+.jobBox .surplusHours   {float:right; font-size:12px; width:90px; color:#999; padding: 3px 0px;}
+.jobBox .due_time       {float:right; font-size:12px; width:90px; color:#999; padding: 3px 0px;}
+.jobBox .more           {float:right; font-size:12px; width:50px; color:#00f; text-align: center; cursor: pointer; padding: 3px 0px;}
+.jobBox .tools          {float:right; font-size:12px; width:50px; color:#999; text-align: center;  padding: 3px 0px;}
+.jobBox:hover           {border:1px solid #ccc; background:#EEF1FF; margin:3px 0px; padding:5px 7px; border-radius: 7px;}
+.jobBox .text           {color:#000;}
+.jobBox .due_time .text {color:#f66; font-weight: bold; font-size: 14px;}
 
 /* 表單 */
 .form div {min-height:25px;}

@@ -220,6 +220,7 @@ $(function()
                 <?php else:?>
                     <div class='createTime'>建立時間: <span class='text'>{createTime}</span></div>
                 <?php endif; ?>
+                <div class='due_time'>預計: <span class='text' title='{due_time}'>{due_time_short}</span></div>
                 <div class='surplusHours'>尚需: <span class='text'>{surplusHours}</span> 小時</div>
                 <div class='usedHours'>已工作: <span class='text'>{usedHours}</span> 小時</div>
                 <div class='hours'>估計需要: <span class='text'>{hours}</span> 小時</div>
