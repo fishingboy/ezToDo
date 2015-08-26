@@ -16,6 +16,20 @@ class Worktime
     private $_CI;
 
     /**
+     * 星期的中文顯示
+     * @var array
+     */
+    private $_weekday = [
+        '日',
+        '一',
+        '二',
+        '三',
+        '四',
+        '五',
+        '六',
+    ];
+
+    /**
      * worktime 的 config 內容
      * @var array
      */
@@ -85,6 +99,16 @@ class Worktime
         list($year, $month, $day) = explode('-', $time);
         $unixtime = mktime(0, 0, 0, $month, $day, $year);
         return date("w", $unixtime);
+    }
+
+    /**
+     * 取得星期的中文
+     * @param  integer $week 星期幾
+     * @return string        中文的星期
+     */
+    public function get_week_name($time)
+    {
+        return $this->_weekday[$this->get_week($time)];
     }
 
     /**

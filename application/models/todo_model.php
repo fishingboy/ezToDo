@@ -34,6 +34,7 @@ class Todo_model extends CI_Model
             $remain_time = $row->hours - $row->usedHours;
             $curr_time = $this->_CI->worktime->get_due_time($curr_time, $remain_time);
             $result[$key]->due_time = $curr_time;
+            $result[$key]->due_weekday = $this->_CI->worktime->get_week_name($curr_time);
         }
 
         return $result;
