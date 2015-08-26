@@ -35,7 +35,7 @@ class Show extends CI_Controller
             $data[$i]->usedHours      = ($data[$i]->usedHours) ? floatval($data[$i]->usedHours) : '-';
             $data[$i]->surplusHours   = ($data[$i]->hours != '-') ? $data[$i]->hours - floatval($data[$i]->usedHours) : '-';
             $data[$i]->due_time       = substr($data[$i]->due_time, 5, 11);
-            $data[$i]->due_time_short = substr($data[$i]->due_time, 0, 5);
+            $data[$i]->due_time_short = substr($data[$i]->due_time, 0, 5) . "({$data[$i]->due_weekday})";
 		}
 
 		// 整理 view data
