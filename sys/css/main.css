@@ -2,7 +2,7 @@ body  {font-family: "Courier New"}
 input {border:1px solid #ccc;}
 input[type="text"] {border:1px solid #ccc;}
 
-#base {margin:0px auto; width:1440px;}
+#base {margin:0px auto; width:1350px;}
 
 /* clearfix */
 .clearfix        {zoom: 1;}
