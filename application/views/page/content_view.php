@@ -8,10 +8,10 @@ var $todo_edit =
 
         <?php if (defined('USER_ACCOUNT')): ?>
             // 新增工作
-            $('#fmAdd').bind('click', this, this.add);
+            $('.fmAdd').bind('click', this, this.add);
 
             // 刪除工作(批次)
-            $('#fmDel').bind('click', this, this.del_todos);
+            $('.fmDel').bind('click', this, this.del_todos);
 
             // 刪除工作
             $('.del_button').bind('click', this, this.del);
@@ -186,8 +186,8 @@ $(function()
 </script>
 <div id='tool_bar' class='clearfix'>
     <?php if (defined('USER_ACCOUNT')): ?>
-    <div id='tool_left'><input id='fmAdd' type='button' class='button' value='新增'></div>
-    <div id='tool_left'><input id='fmDel' type='button' class='button' value='刪除'></div>
+    <div id='tool_left'><input id='fmAdd' type='button' class='button fmAdd' value='新增'></div>
+    <div id='tool_left'><input id='fmDel' type='button' class='button fmDel' value='刪除'></div>
     <?php endif; ?>
     <div id='tool_right'>
         <!-- <input id='fmSearch' type='text'> -->
@@ -230,4 +230,10 @@ $(function()
         </div>
         {/data}
     </div>
+<?php endif; ?>
+<?php if (defined('USER_ACCOUNT')): ?>
+<div id='tool_bar' class='clearfix'>
+    <div id='tool_left'><input id='fmAdd2' type='button' class='button fmAdd' value='新增'></div>
+    <div id='tool_left'><input id='fmDel2' type='button' class='button fmDel' value='刪除'></div>
+</div>
 <?php endif; ?>
