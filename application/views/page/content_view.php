@@ -1,3 +1,9 @@
+<?php
+$status_name[0] = '所有工作';
+$status_name[1] = '未完成';
+$status_name[2] = '已完成';
+$status_name[3] = '擱置';
+?>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script type="text/javascript">
 var $todo_edit =
@@ -204,7 +210,7 @@ $(function()
 <?php else: ?>
     <div id='jobs'>
         <?php foreach ($data as $row):?>
-        <div id='jobBox_<?= $row->todoID ?>' class='jobBox clearfix <?= ($row->status == 2) ? 'complete' : '' ?>'>
+        <div id='jobBox_<?= $row->todoID ?>' class='jobBox clearfix'>
             <div class='jobInfo'>
                 <div id='jobNo_<?= $row->todoID ?>' class='no'>
                     <input id='chk_<?= $row->todoID ?>' class='jobChk' type='checkbox' value='1'>
@@ -220,11 +226,13 @@ $(function()
                 <?php else:?>
                     <div class='createTime'>建立時間: <span class='text'><?= $row->createTime ?></span></div>
                 <?php endif; ?>
-                <div class='due_time'>預計: <span class='text' title='{due_time}'><?= $row->due_time_short ?></span></div>
+                <?php if ($row->status == 1): ?>
+                    <div class='due_time'>預計: <span class='text' title='{due_time}'><?= $row->due_time_short ?></span></div>
+                <?php endif ?>
                 <div class='surplusHours'>尚需: <span class='text'><?= $row->surplusHours ?></span> 小時</div>
                 <div class='usedHours'>已工作: <span class='text'><?= $row->usedHours ?></span> 小時</div>
                 <div class='hours'>估計需要: <span class='text'><?= $row->hours ?></span> 小時</div>
-                <div class='title'><?= $row->title ?></div>
+                <div class='title'><?= $row->title ?> <span class='status<?= $row->status ?>'>(<?= $status_name[$row->status] ?>)</span></div>
             </div>
             <div id='jobNote_<?= $row->todoID ?>' class='jobNote'><?= $row->note ?></div>
         </div>

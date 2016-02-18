@@ -38,11 +38,19 @@ class Todo_model extends CI_Model
                 $curr_time = date('Y-m-d H:i:s');
             }
 
-            // 取得完工時間
-            $remain_time = $row->hours - $row->usedHours;
-            $curr_time = $this->_CI->worktime->get_due_time($curr_time, $remain_time);
-            $result[$key]->due_time = $curr_time;
-            $result[$key]->due_weekday = $this->_CI->worktime->get_week_name($curr_time);
+            if ($row->status == 1)
+            {
+                // 取得完工時間
+                $remain_time = $row->hours - $row->usedHours;
+                $curr_time = $this->_CI->worktime->get_due_time($curr_time, $remain_time);
+                $result[$key]->due_time = $curr_time;
+                $result[$key]->due_weekday = $this->_CI->worktime->get_week_name($curr_time);
+            }
+            else
+            {
+                $result[$key]->due_time = '-';
+                $result[$key]->due_weekday = '-';
+            }
         }
 
         return $result;
