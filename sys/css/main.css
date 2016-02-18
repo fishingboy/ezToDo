@@ -36,6 +36,8 @@ input[type="text"] {border:1px solid #ccc;}
 .jobBox:hover           {border:1px solid #ccc; background:#EEF1FF; margin:3px 0px; padding:5px 7px; border-radius: 7px;}
 .jobBox .text           {color:#000;}
 .jobBox .due_time .text {color:#f66; font-weight: bold; font-size: 14px;}
+.complete               {background: #EEE;}
+
 
 /* 表單 */
 .form div {min-height:25px;}

@@ -203,32 +203,32 @@ $(function()
     <div class='error'>尚無資料！</div>
 <?php else: ?>
     <div id='jobs'>
-        {data}
-        <div id='jobBox_{todoID}' class='jobBox clearfix'>
+        <?php foreach ($data as $row):?>
+        <div id='jobBox_<?= $row->todoID ?>' class='jobBox clearfix <?= ($row->status == 2) ? 'complete' : '' ?>'>
             <div class='jobInfo'>
-                <div id='jobNo_{todoID}' class='no'>
-                    <input id='chk_{todoID}' class='jobChk' type='checkbox' value='1'>
-                    {no}.
+                <div id='jobNo_<?= $row->todoID ?>' class='no'>
+                    <input id='chk_<?= $row->todoID ?>' class='jobChk' type='checkbox' value='1'>
+                    <?= $row->no ?>.
                 </div>
                 <div class='tools'>
                     <?php if (defined('USER_ACCOUNT')): ?>
-                    <img id='edit_{todoID}' class='edit_button button_icon' src='<?= BASE_URL ?>/sys/images/edit.gif'><img id='del_{todoID}' class='del_button button_icon' src='<?= BASE_URL ?>/sys/images/delete.gif'>
+                    <img id='edit_<?= $row->todoID ?>' class='edit_button button_icon' src='<?= BASE_URL ?>/sys/images/edit.gif'><img id='del_<?= $row->todoID ?>' class='del_button button_icon' src='<?= BASE_URL ?>/sys/images/delete.gif'>
                     <?php endif; ?>
                 </div>
-                <?php if ($status == 2): ?>
-                    <div class='createTime'>完成時間: <span class='text'>{completeTime}</span></div>
+                <?php if ($row->status == 2): ?>
+                    <div class='createTime'>完成時間: <span class='text'><?= $row->completeTime ?></span></div>
                 <?php else:?>
-                    <div class='createTime'>建立時間: <span class='text'>{createTime}</span></div>
+                    <div class='createTime'>建立時間: <span class='text'><?= $row->createTime ?></span></div>
                 <?php endif; ?>
-                <div class='due_time'>預計: <span class='text' title='{due_time}'>{due_time_short}</span></div>
-                <div class='surplusHours'>尚需: <span class='text'>{surplusHours}</span> 小時</div>
-                <div class='usedHours'>已工作: <span class='text'>{usedHours}</span> 小時</div>
-                <div class='hours'>估計需要: <span class='text'>{hours}</span> 小時</div>
-                <div class='title'>{title}</div>
+                <div class='due_time'>預計: <span class='text' title='{due_time}'><?= $row->due_time_short ?></span></div>
+                <div class='surplusHours'>尚需: <span class='text'><?= $row->surplusHours ?></span> 小時</div>
+                <div class='usedHours'>已工作: <span class='text'><?= $row->usedHours ?></span> 小時</div>
+                <div class='hours'>估計需要: <span class='text'><?= $row->hours ?></span> 小時</div>
+                <div class='title'><?= $row->title ?></div>
             </div>
-            <div id='jobNote_{todoID}' class='jobNote'>{note}</div>
+            <div id='jobNote_<?= $row->todoID ?>' class='jobNote'><?= $row->note ?></div>
         </div>
-        {/data}
+        <?php endforeach; ?>
     </div>
 <?php endif; ?>
 <?php if (defined('USER_ACCOUNT')): ?>

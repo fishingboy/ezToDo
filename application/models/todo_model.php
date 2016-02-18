@@ -11,12 +11,20 @@ class Todo_model extends CI_Model
     /**
      * 取得工作列表
      */
-    public function get_list($status=1)
+    public function get_list($status = 1)
     {
         $status = ($status) ? $status : 0;
         $order = ($status == 1) ? "sn, todoID" : "completeTime DESC, updateTime DESC";
-        $sql = "SELECT * FROM `todo` WHERE status=? AND userID=? ORDER BY {$order}";
-        $query = $this->db->query($sql, array($status, USER_ID));
+        if ($status > 0)
+        {
+            $sql = "SELECT * FROM `todo` WHERE status=? AND userID=? ORDER BY {$order}";
+            $query = $this->db->query($sql, array($status, USER_ID));
+        }
+        else
+        {
+            $sql = "SELECT * FROM `todo` WHERE userID=? ORDER BY {$order}";
+            $query = $this->db->query($sql, array(USER_ID));
+        }
         $result = $query->result();
 
 
