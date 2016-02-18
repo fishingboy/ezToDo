@@ -232,7 +232,7 @@ $(function()
                 <div class='surplusHours'>尚需: <span class='text'><?= $row->surplusHours ?></span> 小時</div>
                 <div class='usedHours'>已工作: <span class='text'><?= $row->usedHours ?></span> 小時</div>
                 <div class='hours'>估計需要: <span class='text'><?= $row->hours ?></span> 小時</div>
-                <div class='title'><?= $row->title ?> <span class='status<?= $row->status ?>'>(<?= $status_name[$row->status] ?>)</span></div>
+                <div class='title status<?= $row->status ?>'><?= $row->title ?> (<?= $status_name[$row->status] ?>)</div>
             </div>
             <div id='jobNote_<?= $row->todoID ?>' class='jobNote'><?= $row->note ?></div>
         </div>
